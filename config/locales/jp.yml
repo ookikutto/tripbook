@@ -1,0 +1,13 @@
+jp:
+  auth:
+    login: ログイン
+    login-facebook: Facebookでログイン
+    login-google: Googleでログイン
+    login-twitter: Twitterでログイン
+    login-instagram: Instagramでログイン
+    email: メールアドレス
+    password: パスワード
+    remember-me: ログイン情報を記憶する
+    forget-password: パスワードをお忘れですか？
+    not-have-an-account: アカウントをお持ちではないですか?
+    register: 登録

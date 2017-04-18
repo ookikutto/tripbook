@@ -3,12 +3,12 @@
     <%= form_for(resource, as: resource_name, html: { class:'form-signin mg-btm' }, url: session_path(resource_name)) do |f| %>
     	<h3 class="heading-desc">
 		<button type="button" class="close pull-right" aria-hidden="true">×</button>
-		Login to TripBook</h3>
+		TripBook <%= t 'auth.login' %></h3>
 		<div class="social-box">
 			<div class="row mg-btm">
         <div class="col-md-12">
           <a href="<%= omniauth_authorize_path(resource_name, 'facebook') %>" class="btn btn-primary btn-block">
-            <i class="icon-facebook"></i>    Login with Facebook
+            <i class="icon-facebook"></i>    <%= t 'auth.login-facebook' %>
           </a>
 			  </div>
 			</div>
@@ -16,7 +16,7 @@
 			<div class="row mg-btm">
 			    <div class="col-md-12">
                 <a href="<%= omniauth_authorize_path(resource_name, 'twitter') %>" class="btn btn-info btn-block" >
-                  <i class="icon-twitter"></i>    Login with Twitter
+                  <i class="icon-twitter"></i> <%= t 'auth.login-twitter' %>
                 </a>
           </div>
       </div>
@@ -24,7 +24,7 @@
       <div class="row mg-btm">
         <div class="col-md-12">
             <a href="<%= omniauth_authorize_path(resource_name, 'google_oauth2') %>" class="btn btn-danger btn-block" >
-              <i class="icon-google"></i>    Login with Google
+              <i class="icon-google"></i>    <%= t 'auth.login-google' %>
             </a>
         </div>
       </div>
@@ -32,7 +32,7 @@
       <div class="row">
           <div class="col-md-12">
                 <a href="<%= omniauth_authorize_path(resource_name, 'instagram') %>" class="btn btn-success btn-block" >
-                  <i class="icon-instagram"></i>    Login with Instagram
+                  <i class="icon-instagram"></i>    <%= t 'auth.login-instagram' %>
                 </a>
           </div>
       </div>
@@ -41,15 +41,15 @@
 		</div>
 		<div class="main">
 
-    <%= f.email_field :email, class: 'form-control', type: 'text', placeholder: 'Email', autofocus: true %>
+			<%= f.email_field :email, class: 'form-control', type: 'text', placeholder: t('auth.email'), autofocus: true %>
 
-        <%= f.password_field :password, class: 'form-control', type: 'password', placeholder: 'Password', autocomplete: "off" %>
+	        <%= f.password_field :password, class: 'form-control', type: 'password', placeholder: t('auth.password'), autocomplete: "off" %>
 
 
         <% if devise_mapping.rememberable? %>
           <div class="field">
             <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
+						<label for="remember_me"><%= t 'auth.remember_me' %></label>
           </div>
         <% end %>
 		<span class="clearfix"></span>
@@ -61,15 +61,15 @@
 								<!-- <a href="">Forgot your password?</a>
 								<a href="">Sign up now</a> -->
                 <% if controller_name != 'sessions' %>
-                  <%= link_to "Log in", new_session_path(resource_name) %><br />
+                  <%= link_to t('auth.login'), new_session_path(resource_name) %><br />
                 <% end %>
 
                 <% if devise_mapping.registerable? && controller_name != 'registrations' %>
-                  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+                  <%= link_to t('auth.register'), new_registration_path(resource_name) %><br />
                 <% end %>
 
                 <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-                  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+                  <%= link_to t('auth.forget-password'), new_password_path(resource_name) %><br />
                 <% end %>
 
                 <% if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -82,7 +82,7 @@
 							</div>
                         </div>
                         <div class="col-xs-6 col-md-6 pull-right">
-                            <button type="submit" class="btn btn-large btn-danger pull-right">Login</button>
+                            <button type="submit" class="btn btn-large btn-danger pull-right"><%= t 'auth.login' %></button>
                         </div>
                     </div>
 

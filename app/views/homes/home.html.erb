@@ -1,3 +1,5 @@
 <h1>Homes#home</h1>
 <p>Find me in app/views/homes/home.html.erb</p>
-<%= link_to "Signout", destroy_user_session_path, method: :delete %>
+<% if current_user %>
+  <%= link_to "Signout", destroy_user_session_path, method: :delete %>
+<% end %>

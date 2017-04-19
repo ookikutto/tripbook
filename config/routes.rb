@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-  get 'pages/landing'
+  get 'homes/home'
 
-  get 'pages/home'
+  devise_for :users, class_name: 'FormUser',
+    :controllers => {
+      omniauth_callbacks: 'omniauth_callbacks',
+      registrations: 'registrations'
+    }
+
+  get 'pages/landing'
 
   root 'pages#landing'
 end

@@ -1,2 +1,7 @@
 <h1>Pages#landing</h1>
 <p>Find me in app/views/pages/landing.html.erb</p>
+<% if current_user %>
+  <%= link_to "Signout", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Log in", new_user_session_path %>
+<% end %>

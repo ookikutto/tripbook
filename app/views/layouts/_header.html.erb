@@ -1,61 +1,73 @@
-<nav class="navbar">
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <!--<a class="navbar-brand" href="#">Tripbook</a>-->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <%= link_to "Tripbook", root_path, :class => "navbar-brand" %>
     </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Trending</a></li>
-      <li><a href="#">Discovery</a></li>
-      <li>
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category
-          <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Mountain</a></li>
-          <li><a href="#">Forest</a></li>
-          <li class="divider"></li>
-          <li><a href="#">All</a></li>
-        </ul>
-      </li>
-    </ul>
-    <form class="navbar-form navbar-left">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search">
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit">
-            <i class="glyphicon glyphicon-search"></i>
-          </button>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <% if current_user %>
+            <li class="active"><a href="#"><%= t 'header.home' %></a></li>
+        <% end %>
+        <li><a href="#"><%= t 'header.trending' %></a></li>
+        <li>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t 'header.category' %>
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><%= t 'header.mountain' %></a></li>
+            <li><a href="#"><%= t 'header.forest' %></a></li>
+            <li class="divider"></li>
+            <li><a href="#"><%= t 'header.all' %></a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="<%= t 'header.search-placeholder' %>">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </div>
         </div>
-      </div>
-    </form>
-    <ul class="nav navbar-nav navbar-right">
-      <% if current_user %>
-          <li>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.email %>
-              <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
-              <li>
-                <%= link_to('Edit registration', edit_user_registration_path) %>
-              </li>
-              <li class="divider"></li>
-              <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-            </ul>
-          </li>
-      <% else %>
-          <li>
-            <%= link_to new_user_session_path do %>
-                <span class="glyphicon glyphicon-log-in"></span> Sign in
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_user_registration_path do %>
-                <span class="glyphicon glyphicon-user"></span> Create account
-            <% end %>
-          </li>
-
-      <% end %>
-    </ul>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+            <li>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= truncate current_user.email, length: 30 %>
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><%= t 'header.profile' %></a></li>
+                <li>
+                  <%= link_to edit_user_registration_path do %>
+                      <%= t 'header.edit-profile' %>
+                  <% end %>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete do %>
+                      <%= t 'auth.sign-out' %>
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+        <% else %>
+            <li>
+              <%= link_to new_user_session_path, :class => "sign-in-btn btn" do %>
+                  <%= t 'auth.login' %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path, :class => "sign-up-btn btn" do %>
+                  <%= t 'auth.register' %>
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </nav>

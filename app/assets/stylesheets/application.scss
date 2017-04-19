@@ -79,3 +79,53 @@ form {
 .mg-btm{
 	margin-bottom:20px;
 }
+
+// navbar css
+nav.navbar {
+  background: #333;
+  border-color: #333;
+  border-radius: 0;
+  padding: 0 30px;
+}
+nav .navbar-header .icon-bar {
+
+}
+nav .navbar-form {
+  width: calc(100% - 85px - 281px - 236px - 50px);
+}
+nav .navbar-form > div.input-group {
+  width: 100%;
+}
+nav .sign-in-btn {
+  line-height: 0 !important;
+  margin-top: 12px;
+  margin-right: 12px;
+  color: #fff !important;
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 11px 15px !important;
+}
+nav .sign-in-btn:hover {
+  border-color: #e5e5e5;
+}
+nav .sign-up-btn {
+  line-height: 0 !important;
+  margin-top: 12px;
+  color: #fff !important;
+  border-radius: 3px;
+  background-color: #f50;
+  border-color: #f50;
+  padding: 11px 15px !important;
+}
+nav .sign-up-btn:hover {
+  background-color: #f50 !important;
+}
+@media screen and (max-width: 767px) {
+  nav .navbar-form {
+    width: auto;
+  }
+  nav .sign-in-btn, nav .sign-up-btn {
+    margin: 5px 15px;
+    line-height: 1px !important;
+  }
+}

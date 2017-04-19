@@ -11,3 +11,18 @@ jp:
     forget-password: パスワードをお忘れですか？
     not-have-an-account: アカウントをお持ちではないですか?
     register: 登録
+    sign-out: サインアウト
+
+  header:
+    home: ホーム
+    trending: トレンドストーリー
+    category: カテゴリ
+    mountain: 山
+    forest: 森
+    all: すべて
+    search-placeholder: ストーリー、旅行者を検索する ...
+    profile: マイプロフィール
+    edit-profile: プロフィール編集
+
+
+

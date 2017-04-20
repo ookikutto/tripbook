@@ -1,7 +1,9 @@
-<h1>Pages#landing</h1>
-<p>Find me in app/views/pages/landing.html.erb</p>
-<% if current_user %>
-  <%= link_to "Signout", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Log in", new_user_session_path %>
-<% end %>
+<div class="container">
+  <div class="col-md-6 text-left">
+    <h1><span class="welcome-tripbook">Tripbook </span>へようこそ。</h1>
+    <h2>どこへ？<span class="welcome-tripbook">Tripbook</span>で<br>次の旅行を始める。</h2>
+  </div>
+  <div class="col-md-6 text-left">
+    <img src="https://s-media-cache-ak0.pinimg.com/736x/53/7a/a6/537aa662fa3539dc09e8412201fe9df9.jpg" alt="picture here">
+  </div>
+</div>

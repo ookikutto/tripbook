@@ -49,6 +49,10 @@ gem 'instagram'
 gem 'omniauth-google-oauth2'
 gem 'google-api-client'
 
+# For image uploading
+gem 'carrierwave'
+gem 'carrierwave-aws'
+
 gem 'rails-i18n'
 
 group :development, :test do

@@ -24,5 +24,15 @@ jp:
     profile: マイプロフィール
     edit-profile: プロフィール編集
 
+  user:
+    edit-profile: プロフィール編集
+    new-password: 新しいパスワード
+    new-password-confirmation: 新しいパスワード確認
+    current-password: 現在のパスワード
+    update: アップデート
+    name: 名前
 
+  common:
+    option: オプション
+    cancel: キャンセル
 

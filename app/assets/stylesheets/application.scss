@@ -132,3 +132,26 @@ nav .sign-up-btn:hover {
 .welcome-tripbook {
   color: #f50;
 }
+
+.form-edit-profile .sub-info {
+    display: inline;
+    font-size: 12px;
+    color: gray;
+}
+
+.form-edit-profile .actions {
+    margin: 0 auto;
+}
+
+.form-edit-profile .new-password {
+  margin: 10px 0px;
+}
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}

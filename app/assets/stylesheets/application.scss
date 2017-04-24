@@ -1,8 +1,24 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body, html {
+  height: 100%;
+  margin: 0;
+}
+body {
+  background: #f2f2f2;
+}
+
 form {
   margin: auto auto;
+}
+
+.row {
+  margin: 0;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .form-signin {
@@ -129,10 +145,269 @@ nav .sign-up-btn:hover {
     line-height: 1px !important;
   }
 }
-.welcome-tripbook {
+
+// landing page
+/* The hero image */
+.container.landing-page {
+  background: white;
+  padding: 0;
+}
+.container.landing-page .hero-image {
+  background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(http://duonglamtravel.com/wp-content/uploads/2016/03/Duong-Lam-Travel-Hanoi-Cycling-Around-1.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-top: 4px solid #f50;
+  background-color: #666;
+  height: 450px;
+}
+.container.landing-page .hero-image .header .brandname {
+  margin-top: 30px;
+  margin-left: 30px;
+  color: white;
+  font-size: 30px;
+}
+.container.landing-page .hero-image .header .brandname a {
+  color: white;
+}
+.container.landing-page .hero-image .header .brandname a:hover {
+  text-decoration: none;
+}
+.container.landing-page .hero-image .header .authen-buttons {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+}
+.container.landing-page .hero-image .header .authen-buttons .sign-in-btn {
+  margin-right: 6px;
+  color: white;
+  min-width: 90px;
+  border-color: #ccc;
+}
+.container.landing-page .hero-image .header .authen-buttons .sign-up-btn {
+  background-color: #f50;
+  border-color: #f50;
+  color: #fff;
+  min-width: 90px;
+}
+.container.landing-page .hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+.container.landing-page .hero-text .btn {
+  background-color: #f50;
+  border-color: #f50;
+  color: white;
+  margin-top: 15px;
+}
+.container.landing-page .hero-text .btn:hover {
+  background-color: #555;
+  color: white;
+}
+.container.landing-page .search-upload {
+  margin: 30px 0;
+}
+.container.landing-page .search-upload .search-wrapper .input-group > input {
+  height: 50px;
+  background: #f2f2f2;
+  border: none;
+  border-radius: 3px;
+  box-shadow: none;
+}
+.container.landing-page .search-upload .search-wrapper .input-group .input-group-btn {
+  height: 50px;
+}
+.container.landing-page .search-upload .search-wrapper .input-group .input-group-btn button {
+  height: 50px;
+  width: 50px;
+  background: #f2f2f2;
+  font-size: 22px;
+  padding-right: 20px;
+  border: none;
+  border-radius: 3px;
+}
+.container.landing-page .search-upload > p {
+  line-height: 50px;
+  font-size: 20px;
+  text-align: center;
+  padding: 0;
+  margin: 0 -15px;
+}
+.container.landing-page .search-upload .upload-btn {
+  color: #4a4a4a;
+  padding: 13px 23px;
+  background-color: white;
+  border: 1px solid #e5e5e5;
+  font-size: 16px;
+  width: 100%;
+  min-width: 200px;
+}
+.container.landing-page .trending-for-guest {
+  margin-bottom: 30px;
+}
+.container.landing-page .trending-for-guest .title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+.container.landing-page .trending-for-guest .story-item {
+  margin-bottom: 30px;
+}
+.container.landing-page .trending-for-guest .story-wrapper {
+  height: 320px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
+  box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.25);
+  transition: all 0.3s ease;
+  padding: 0 15px;
+  position: relative;
+}
+.container.landing-page .trending-for-guest .story-wrapper:hover {
+  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+}
+.container.landing-page .trending-for-guest .story-wrapper .uploader-area {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  display: block;
+  width: calc(100% - 30px);
+}
+.container.landing-page .trending-for-guest .story-wrapper .story-detail-link {
+  display: block;
+  height: 320px;
+  z-index: 1;
+  width: 100%;
+  left: 0;
+}
+.container.landing-page .trending-for-guest .story-wrapper .uploader-area .uploader-wrapper {
+  border-left: 3px solid orange;
+  padding-left: 10px;
+  margin: 20px 0px 10px;
+  height: 30px;
+}
+.container.landing-page .trending-for-guest .story-wrapper .uploader-area .profile-pic {
+  height: 47px;
+  width: 47px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: inline-block;
+  margin-top: -10px;
+}
+.container.landing-page .trending-for-guest .story-wrapper .uploader-area .name {
+  display: inline-block;
+  line-height: 47px;
+  vertical-align: top;
+  margin-top: -10px;
+  margin-left: 10px;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+}
+.container.landing-page .trending-for-guest .story-wrapper .story-title {
+  position: absolute;
+  bottom: 30px;
+  font-size: 22px;
+  color: #fff;
+  line-height: 28px;
+  text-shadow: 1px 1px 4px black;
+}
+.container.landing-page .trending-for-guest .story-wrapper .story-stat {
+  position: absolute;
+  bottom: 5px;
+  display: block;
+  width: calc(100% - 30px);
+  text-align: right;
+  font-size: 15px;
+}
+.container.landing-page .trending-for-guest .story-wrapper .story-stat > div {
+  display: inline-block;
+}
+.container.landing-page .trending-for-guest .story-wrapper .story-stat .like-count {
   color: #f50;
+  text-shadow: 1px 1px 5px black;
+  margin-right: 10px;
+}
+.container.landing-page .trending-for-guest .story-wrapper .story-stat .comment-count {
+  color: orange;
+  text-shadow: 1px 1px 5px black;
+}
+.container.landing-page .trending-for-guest .trending-btn {
+  background-color: #f50;
+  border-color: #f50;
+  color: white;
 }
 
+// home page
+.container.home-page {
+
+}
+.container.home-page .story-wrapper {
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.09);
+  border-radius: 3px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+.container.home-page .story-wrapper .uploader-info .profile-pic {
+  display: inline-block;
+}
+.container.home-page .story-wrapper .uploader-info .profile-pic .profile-pic-img {
+  background-position: center;
+  height: 47px;
+  width: 47px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container.home-page .story-wrapper .uploader-info .left {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 5px;
+}
+.container.home-page .story-wrapper .uploader-info .left .name {
+  color: #262626;
+  font-weight: bold;
+  font-size: 15px;
+}
+.container.home-page .story-wrapper .uploader-info .left .date-upload {
+  color: rgba(0,0,0,.6);
+}
+.container.home-page .story-wrapper .uploader-info .right {
+  vertical-align: top;
+  line-height: 47px;
+  float: right;
+  color: #999
+}
+.container.home-page .story-wrapper .story-cover {
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 75%;
+}
+.container.home-page .story-wrapper .story-title {
+  margin: 10px 0;
+  font-size: 25px;
+}
+.container.home-page .story-wrapper .story-action .like-btn:hover {
+  background-color: white;
+}
+.container.home-page .story-wrapper .story-action .like-btn.liked {
+  color: #f50;
+  padding: 2px 10px;
+}
+.container.home-page .story-wrapper .story-action .comment-count {
+  display: inline-block;
+  float: right;
+  color: #999;
+  font-size: 13px;
+}
 footer {
   position: relative;
   background-color: #7a7f82;

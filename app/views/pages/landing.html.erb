@@ -1,9 +1,206 @@
-<div class="container">
-  <div class="col-md-6 text-left">
-    <h1><span class="welcome-tripbook">Tripbook </span>へようこそ。</h1>
-    <h2>どこへ？<span class="welcome-tripbook">Tripbook</span>で<br>次の旅行を始める。</h2>
-  </div>
-  <div class="col-md-6 text-left">
-    <img src="https://s-media-cache-ak0.pinimg.com/736x/53/7a/a6/537aa662fa3539dc09e8412201fe9df9.jpg" alt="picture here">
-  </div>
-</div>
+<% unless current_user %>
+    <div class="container landing-page">
+      <div class="hero-image">
+        <div class="header">
+          <div class="brandname">
+            <%= link_to "TRIPBOOK", root_path %>
+          </div>
+          <div class="authen-buttons">
+            <%= link_to new_user_session_path, :class => "sign-in-btn btn" do %>
+                <%= t 'auth.login' %>
+            <% end %>
+            <%= link_to new_user_registration_path, :class => "sign-up-btn btn" do %>
+                <%= t 'auth.register' %>
+            <% end %>
+          </div>
+        </div>
+        <div class="hero-text">
+          <h1>TripBookに接続する</h1>
+          <p>世界各地からの旅行情報を発見して共有しましょう。</p>
+          <%= link_to new_user_registration_path, :class => "btn" do %>
+              サインアップ
+          <% end %>
+        </div>
+      </div>
+
+      <div class="search-upload row">
+        <div class="col-md-6 col-md-offset-1 search-wrapper">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="<%= t 'header.search-placeholder' %>">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <p class="col-md-1 hidden-xs">または</p>
+        <div class="col-md-2">
+          <%= link_to new_user_session_path, :class => "upload-btn btn" do %>
+              自身のアップロード
+          <% end %>
+        </div>
+      </div>
+
+      <!-- start trending for guest -->
+      <div class="trending-for-guest row">
+        <p class="title">ここでは、TripBookコミュニティからのトレンドのストーリーです。</p>
+
+        <!-- start story block -->
+        <div class="col-sm-4 story-item">
+          <div class="story-wrapper" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/mobile_cover_images/public/Hero_image1.jpg);">
+            <a class="story-detail-link" href="#story-detail"></a>
+            <div class="uploader-area">
+              <a href="#uploader-profile">
+                <div class="uploader-wrapper">
+                  <div class="profile-pic" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+                  <p class="name">TruongNM</p>
+                </div>
+              </a>
+            </div>
+            <p class="story-title"><%= truncate "Lang Sonでの私の究極の結婚式とハネムーンプラン", length: 30 %></p>
+            <div class="story-stat">
+              <div class="like-count">
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 2037
+              </div>
+              <div class="comment-count">
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 31
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end story block -->
+
+        <!-- start story block -->
+        <div class="col-sm-4 story-item">
+          <div class="story-wrapper" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/mobile_cover_images/public/Hero_image1.jpg);">
+            <a class="story-detail-link" href="#story-detail"></a>
+            <div class="uploader-area">
+              <a href="#uploader-profile">
+                <div class="uploader-wrapper">
+                  <div class="profile-pic" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+                  <p class="name">TruongNM</p>
+                </div>
+              </a>
+            </div>
+            <p class="story-title"><%= truncate "Lang Sonでの私の究極の結婚式とハネムーンプラン", length: 30 %></p>
+            <div class="story-stat">
+              <div class="like-count">
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 2037
+              </div>
+              <div class="comment-count">
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 31
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end story block -->
+
+        <!-- start story block -->
+        <div class="col-sm-4 story-item">
+          <div class="story-wrapper" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/mobile_cover_images/public/Hero_image1.jpg);">
+            <a class="story-detail-link" href="#story-detail"></a>
+            <div class="uploader-area">
+              <a href="#uploader-profile">
+                <div class="uploader-wrapper">
+                  <div class="profile-pic" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+                  <p class="name">TruongNM</p>
+                </div>
+              </a>
+            </div>
+            <p class="story-title"><%= truncate "Lang Sonでの私の究極の結婚式とハネムーンプラン", length: 30 %></p>
+            <div class="story-stat">
+              <div class="like-count">
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 2037
+              </div>
+              <div class="comment-count">
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 31
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end story block -->
+
+        <!-- start story block -->
+        <div class="col-sm-4 story-item">
+          <div class="story-wrapper" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/mobile_cover_images/public/Hero_image1.jpg);">
+            <a class="story-detail-link" href="#story-detail"></a>
+            <div class="uploader-area">
+              <a href="#uploader-profile">
+                <div class="uploader-wrapper">
+                  <div class="profile-pic" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+                  <p class="name">TruongNM</p>
+                </div>
+              </a>
+            </div>
+            <p class="story-title"><%= truncate "Lang Sonでの私の究極の結婚式とハネムーンプラン", length: 30 %></p>
+            <div class="story-stat">
+              <div class="like-count">
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 2037
+              </div>
+              <div class="comment-count">
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 31
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end story block -->
+
+        <!-- start story block -->
+        <div class="col-sm-4 story-item">
+          <div class="story-wrapper" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/mobile_cover_images/public/Hero_image1.jpg);">
+            <a class="story-detail-link" href="#story-detail"></a>
+            <div class="uploader-area">
+              <a href="#uploader-profile">
+                <div class="uploader-wrapper">
+                  <div class="profile-pic" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+                  <p class="name">TruongNM</p>
+                </div>
+              </a>
+            </div>
+            <p class="story-title"><%= truncate "Lang Sonでの私の究極の結婚式とハネムーンプラン", length: 30 %></p>
+            <div class="story-stat">
+              <div class="like-count">
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 2037
+              </div>
+              <div class="comment-count">
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 31
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end story block -->
+
+        <!-- start story block -->
+        <div class="col-sm-4 story-item">
+          <div class="story-wrapper" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/mobile_cover_images/public/Hero_image1.jpg);">
+            <a class="story-detail-link" href="#story-detail"></a>
+            <div class="uploader-area">
+              <a href="#uploader-profile">
+                <div class="uploader-wrapper">
+                  <div class="profile-pic" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+                  <p class="name">TruongNM</p>
+                </div>
+              </a>
+            </div>
+            <p class="story-title"><%= truncate "Lang Sonでの私の究極の結婚式とハネムーンプラン", length: 30 %></p>
+            <div class="story-stat">
+              <div class="like-count">
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 2037
+              </div>
+              <div class="comment-count">
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 31
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end story block -->
+        <div class="row text-center">
+          <a href="#trending-page" class="btn trending-btn">Explore our trending stories</a>
+        </div>
+
+      </div>
+      <!-- end trending for guest -->
+
+    </div>
+<% end %>

@@ -7,9 +7,8 @@ Rails.application.routes.draw do
     }
 
   resources :cards, only: [:new, :create, :show]
-  
-  get 'pages/landing', as: 'landing'
-  get 'pages/home', as: 'home'
+
+  get 'home' => 'pages#home', as: 'home'
 
   root 'pages#landing'
 end

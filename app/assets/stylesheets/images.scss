@@ -1,0 +1,115 @@
+// upload image page
+.container.image-page {
+  background: white;
+  padding: 0;
+}
+.container.image-page .wrapper {
+  border-radius: 2px;
+  background-color: #fff;
+  border: 1px solid #f2f2f2;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-bottom: 30px;
+}
+.container.image-page .wrapper .title {
+  text-align: center;
+}
+.container.image-page .wrapper .new_image .image-preview {
+  height: 300px;
+  margin-bottom: 20px;
+}
+.container.image-page .wrapper .new_image .image-preview .no-image {
+  width: 300px;
+  height: 300px;
+  background-image: linear-gradient(135deg,#846170,#70929c);
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+.container.image-page .wrapper .new_image .image-preview .picked-image {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  object-fit: cover;
+}
+.container.image-page .wrapper .new_image .pick-img-btn {
+  display: inline-block;
+}
+.container.image-page .wrapper .new_image .actions .submit-btn {
+  background-color: #f50;
+  border-color: #f50;
+  color: white;
+}
+.container.image-page .wrapper .new_image .actions .back-btn {
+  border-color: #999;
+  color: #333;
+  float: right;
+}
+
+// image show
+.container.image-show-page {
+
+}
+.container.image-show-page .story-wrapper {
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.09);
+  border-radius: 3px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+.container.image-show-page .story-wrapper .uploader-info .profile-pic {
+  display: inline-block;
+}
+.container.image-show-page .story-wrapper .uploader-info .profile-pic .profile-pic-img {
+  background-position: center;
+  height: 47px;
+  width: 47px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container.image-show-page .story-wrapper .uploader-info .left {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 5px;
+}
+.container.image-show-page .story-wrapper .uploader-info .left .name {
+  color: #262626;
+  font-weight: bold;
+  font-size: 15px;
+}
+.container.image-show-page .story-wrapper .uploader-info .left .date-upload {
+  color: rgba(0,0,0,.6);
+}
+.container.image-show-page .story-wrapper .uploader-info .right {
+  vertical-align: top;
+  line-height: 47px;
+  float: right;
+  color: #999
+}
+.container.image-show-page .story-wrapper .story-cover {
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 75%;
+}
+.container.image-show-page .story-wrapper .story-title {
+  margin: 10px 0;
+  font-size: 25px;
+}
+.container.image-show-page .story-wrapper .story-action .like-btn:hover {
+  background-color: white;
+}
+.container.image-show-page .story-wrapper .story-action .like-btn.liked {
+  color: #f50;
+  padding: 2px 10px;
+}
+.container.image-show-page .story-wrapper .story-action .comment-count {
+  display: inline-block;
+  float: right;
+  color: #999;
+  font-size: 13px;
+}

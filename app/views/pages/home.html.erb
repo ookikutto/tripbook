@@ -1,65 +1,38 @@
+
+<style>
+  #hover-content {
+    display:none;
+  }
+  #parent:hover #hover-content {
+    display: inline;
+  }
+
+</style>
+
+
 <div class="container home-page">
 
-  <!-- star story item -->
-  <div class="col-md-8 col-md-offset-2 story-wrapper">
-    <div class="uploader-info">
-      <a href="#uploader-profile" class="profile-pic">
-        <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
-      </a>
-      <div class="left">
-        <a href="#uploader-profile" class="name">Truong Nguyen</a>
-        <p class="date-upload">Apr 19, 2017</p>
+  <% @image.each do |image| %>
+      <div class="col-md-8 col-md-offset-2 story-wrapper">
+        <div class="uploader-info">
+          <a href="#uploader-profile" class="profile-pic">
+            <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+          </a>
+          <div class="left">
+            <a href="#uploader-profile" class="name"><%= truncate(image.user.email, length: 30) %></a>
+          </div>
+          <div class="right" id="parent">
+            <span class="date-upload" id="hover-content"><%= image.created_at %></span>
+            <%= distance_of_time_in_words_to_now(image.created_at) %>
+          </div>
+        </div>
+        <%= link_to image do %>
+            <div class="story-cover" style="background-image: url(<%= image.file %>);">
+            </div>
+        <% end %>
+        <div class="story-title">
+          <%= truncate image.title, length: 30 %>
+        </div>
       </div>
-      <div class="right">7時間前</div>
-    </div>
-    <a href="#story-detail">
-      <div class="story-cover" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/mobile_cover_images/public/Hero_image1.jpg);">
-      </div>
-    </a>
-    <div class="story-title">
-      <%= truncate "Lang Sonでの私の究極の結婚式とハネムーンプラン", length: 30 %>
-    </div>
-    <div class="story-action">
-      <button type="button" class="btn btn-default btn-sm like-btn">
-        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 607
-      </button>
-
-      <div class="comment-count">
-        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 31 コメント
-      </div>
-    </div>
-  </div>
-  <!-- end story item -->
-
-  <!-- star story item -->
-  <div class="col-md-8 col-md-offset-2 story-wrapper">
-    <div class="uploader-info">
-      <a href="#uploader-profile" class="profile-pic">
-        <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
-      </a>
-      <div class="left">
-        <a href="#uploader-profile" class="name">Truong Nguyen</a>
-        <p class="date-upload">Apr 19, 2017</p>
-      </div>
-      <div class="right">7時間前</div>
-    </div>
-    <a href="#story-detail">
-      <div class="story-cover" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/mobile_cover_images/public/Hero_image1.jpg);">
-      </div>
-    </a>
-    <div class="story-title">
-      <%= truncate "Lang Sonでの私の究極の結婚式とハネムーンプラン", length: 30 %>
-    </div>
-    <div class="story-action">
-      <button type="button" class="btn btn-default btn-sm like-btn liked">
-        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 607
-      </button>
-
-      <div class="comment-count">
-        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 31 コメント
-      </div>
-    </div>
-  </div>
-  <!-- end story item -->
-
+  <% end %>
 </div>

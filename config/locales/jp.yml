@@ -23,6 +23,12 @@ jp:
     search-placeholder: ストーリー、旅行者を検索する ...
     profile: マイプロフィール
     edit-profile: プロフィール編集
-
-
-
+  datetime:
+    distance_in_words:
+      short:
+        about_x_hours:
+          one: '一時間前に'
+          other: '%{count} 時間前に'
+      x_minutes:
+        one: 1分前に
+        other: '%{count}分前に'

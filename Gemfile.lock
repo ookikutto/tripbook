@@ -52,6 +52,7 @@ GEM
       aws-sdk-core (= 2.9.11)
     aws-sigv4 (1.0.0)
     bcrypt (3.1.11)
+    bcrypt (3.1.11-x86-mingw32)
     bindex (0.5.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -94,6 +95,7 @@ GEM
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
+    ffi (1.9.18-x86-mingw32)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     google-api-client (0.11.1)
@@ -164,6 +166,8 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
+    nokogiri (1.7.1-x86-mingw32)
+      mini_portile2 (~> 2.1.0)
     oauth (0.5.1)
     oauth2 (1.3.1)
       faraday (>= 0.8, < 0.12)
@@ -196,6 +200,7 @@ GEM
     orm_adapter (0.5.0)
     os (0.9.6)
     pg (0.20.0)
+    pg (0.20.0-x86-mingw32)
     public_suffix (2.0.5)
     puma (3.8.2)
     rack (2.0.1)
@@ -281,12 +286,15 @@ GEM
       simple_oauth (~> 0.3.1)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2017.2)
+      tzinfo (>= 1.0.0)
     uber (0.1.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.3)
+    unf_ext (0.0.7.3-x86-mingw32)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.5.0)
@@ -301,6 +309,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   bcrypt (~> 3.1.11)

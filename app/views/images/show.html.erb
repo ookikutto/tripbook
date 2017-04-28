@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container image-show-page">
+  <!-- star story item -->
+  <div class="col-md-8 col-md-offset-2 story-wrapper">
+    <div class="uploader-info">
+      <a href="#uploader-profile" class="profile-pic">
+        <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+      </a>
+      <div class="left">
+        <a href="#uploader-profile" class="name"><%= truncate(@image.user.email, length: 30) %></a>
+        <p class="date-upload"><%= @image.created_at %></p>
+      </div>
+      <!--<div class="right"><%= distance_of_time_in_words_to_now(@image.created_at) %></div>-->
+    </div>
+    <a href="#story-detail">
+      <div class="story-cover" style="background-image: url(<%= @image.file %>);">
+      </div>
+    </a>
+    <div class="story-title">
+      <%= truncate @image.title, length: 30 %>
+    </div>
+  </div>
+  <div class="col-md-8 col-md-offset-2 actions">
+    <div class="row">
+      <%= form_for(@image_comment) do |f| %>
+          <div class="form-group">
+            <%= f.text_field :comment, :class => "form-control", :placeholder => "Write a comment" %>
+            <%= f.hidden_field :image_id, :value => @image.id %>
+            <!--<div class="input-group-btn">-->
+            <!--<%= f.submit "Send comment", :class => "btn btn-default" do %>-->
+                <!--<i class="glyphicon glyphicon-search"></i>-->
+                <!--<% end %>-->
+            <!--</div>-->
+          </div>
+      <% end %>
+    </div>
+    <div class="row">
+      <% if current_user.id == @image.user_id %>
+          <%= link_to 'Edit my post', edit_image_path(@image), :class => "btn btn-default" %>
+          <%= link_to 'Destroy', @image, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+      <% end %>
+
+      <br><br>
+
+      <% if @image.image_comment.count>0 %>
+          <div class="comment-count">
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <%= @image.image_comment.count %> comments
+          </div>
+      <% end %>
+    </div>
+    <div class="row">
+      <ul>
+        <% @image.image_comment.each do |image_comment| %>
+            <li><%= image_comment.user.email %> said: <%= image_comment.comment %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <!-- end story item -->
+</div>

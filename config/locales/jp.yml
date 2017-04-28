@@ -25,10 +25,12 @@ jp:
     edit-profile: プロフィール編集
   datetime:
     distance_in_words:
-      short:
-        about_x_hours:
-          one: '一時間前に'
-          other: '%{count} 時間前に'
+      about_x_hours:
+        one: '一時間前に'
+        other: '%{count} 時間前に'
       x_minutes:
         one: 1分前に
         other: '%{count}分前に'
+      less_than_x_minutes:
+        one: 1分以下
+        other: '%{count}分以下'

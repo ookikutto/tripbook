@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   end
 
   def home
-    @image = Image.all
+    @image = Image.all.order(created_at: :desc)
   end
 
   def about

@@ -356,60 +356,71 @@ nav .sign-up-btn:hover {
   padding: 20px;
   margin-bottom: 30px;
 }
-.container.home-page .story-wrapper .uploader-info .profile-pic {
+.story-wrapper .uploader-info .profile-pic {
   display: inline-block;
 }
-.container.home-page .story-wrapper .uploader-info .profile-pic .profile-pic-img {
+.profile-pic-img {
   background-position: center;
   height: 47px;
   width: 47px;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.container.home-page .story-wrapper .uploader-info .left {
+.story-wrapper .uploader-info .left {
   display: inline-block;
   vertical-align: top;
   margin-left: 5px;
 }
-.container.home-page .story-wrapper .uploader-info .left .name {
+.story-wrapper .uploader-info .left .name {
   color: #262626;
   font-weight: bold;
   font-size: 15px;
 }
-.container.home-page .story-wrapper .uploader-info .left .date-upload {
+.story-wrapper .uploader-info .left .date-upload {
   color: rgba(0,0,0,.6);
 }
-.container.home-page .story-wrapper .uploader-info .right {
+.story-wrapper .uploader-info .right {
   vertical-align: top;
-  line-height: 47px;
   float: right;
   color: #999
 }
-.container.home-page .story-wrapper .story-cover {
+.story-wrapper .uploader-info .right .dropdown-toggle {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 5px 0 0 5px;
+  color: gray;
+}
+.story-wrapper .uploader-info .right .dropdown-toggle span.caret {
+  border-width: 5px;
+}
+.story-wrapper .story-cover {
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   padding-bottom: 75%;
 }
-.container.home-page .story-wrapper .story-title {
+.story-wrapper .story-title {
   margin: 10px 0;
   font-size: 25px;
 }
-.container.home-page .story-wrapper .story-action .like-btn:hover {
+.story-wrapper .story-action .like-btn:hover {
   background-color: white;
 }
-.container.home-page .story-wrapper .story-action .like-btn.liked {
+.story-wrapper .story-action .like-btn.liked {
   color: #f50;
   padding: 2px 10px;
 }
-.container.home-page .story-wrapper .story-action .comment-count {
+.story-wrapper .story-action .comment-count {
   display: inline-block;
   float: right;
   color: #999;
   font-size: 13px;
 }
+.comment-wrapper {
+  margin-top: 30px;
+}
 footer {
-  position: relative;
   background-color: #7a7f82;
   padding: 1em 3em;
 }

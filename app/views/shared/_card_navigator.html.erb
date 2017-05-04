@@ -4,9 +4,13 @@
     <% story.timeline.each do |card| %>
       <div class="card-container <%= "just-caption" if card.photo.empty? %>">
         <% if card.photo.present? %>
-          <%= image_tag(card.photo) %>
+          <%= link_to edit_story_card_path(story, card) do %>
+            <%= image_tag(card.photo) %>
+          <% end %>
         <% else %>
-            <%= card.caption %>
+            <%= link_to edit_story_card_path(story, card) do %>
+              <%= card.caption %>
+            <% end %>
         <% end %>
       </div>
     <% end %>

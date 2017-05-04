@@ -52,6 +52,9 @@ gem 'google-api-client'
 # For image uploading
 gem 'carrierwave'
 gem 'carrierwave-aws'
+gem 'aws-sdk'
+
+gem "jquery-fileupload-rails"
 
 gem 'rails-i18n'
 

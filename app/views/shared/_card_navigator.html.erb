@@ -1,0 +1,18 @@
+<div class="side-container">
+  <h2><%= story.title %></h2>
+  <div class="cards-container">
+    <% story.timeline.each do |card| %>
+      <div class="card-container <%= "just-caption" if card.photo.empty? %>">
+        <% if card.photo.present? %>
+          <%= image_tag(card.photo) %>
+        <% else %>
+            <%= card.caption %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if story.timeline.empty? %>
+      <div class="empty-card"></div>
+    <% end %>
+  </div>
+</div>

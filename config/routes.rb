@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     }
 
   resources :cards, only: [:new, :create, :show]
+  resources :stories
 
   get 'home' => 'pages#home', as: 'home'
 

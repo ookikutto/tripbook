@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-md-4 col-sm-3">
+    <%= render partial: 'shared/card_navigator', locals: { story: @story } %>
+  </div>
+  <div class="col-md-8">
+    <%= render 'form', locals: { story: @story, card: @card } %>
+  </div>
+</div>

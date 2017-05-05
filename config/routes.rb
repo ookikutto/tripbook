@@ -8,7 +8,6 @@ Rails.application.routes.draw do
       registrations: 'registrations'
     }
 
-  resources :cards, only: [:new, :create, :show]
   resources :stories do
     resources :cards
   end

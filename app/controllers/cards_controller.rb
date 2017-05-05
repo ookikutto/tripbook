@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   before_action :authenticate_user!, except: [ :show ]
-  before_action :find_story, only: [ :show, :new, :create ]
+  before_action :find_story
+  before_action :find_card, only: [ :edit, :update, :destroy ]
 
   def create
     @card = Card.new card_params
@@ -21,10 +22,33 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
   end
 
+  def edit
+  end
+
+  def update
+    @card.update_attributes card_params
+    redirect_to edit_story_card_path(@story, @card)
+  end
+
+  def destroy
+    @card.destroy
+    redirect_to 
+  end
+
   private
 
   def find_story
     @story = Story.find_by id: params[:story_id]
+    if @story.nil?
+      redirect_to home_path
+    end
+  end
+
+  def find_card
+    @card = Card.find_by id: params[:id]
+    if @card.nil?
+      redirect_to home_path
+    end
   end
 
   def card_params

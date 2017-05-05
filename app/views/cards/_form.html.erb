@@ -1,4 +1,7 @@
 <div class="photo-upload-container">
+  <div class="photo">
+    <%= image_tag(@card.photo) if @card.photo.present? %>
+  </div>
   <form action="https://<%= ENV['S3_BUCKET_NAME'] %>.s3-<%= ENV['AWS_REGION'] %>.amazonaws.com"
     method="post" enctype="multipart/form-data" class="direct-upload" >
     <input type="hidden" name="key">
@@ -19,10 +22,13 @@
     </div>
   </form>
 </div>
-<%= form_for [story, card] do |f| %>
+<%= form_for [@story, @card] do |f| %>
   <%= f.hidden_field :photo %>
-  <textarea name="card[caption]" id="card_caption" cols="80" rows="2" placeholder="Tell the story..." class="caption" autofocus="true"></textarea>
+  <textarea name="card[caption]" id="card_caption" cols="80" rows="2" placeholder="Tell the story..." class="caption" autofocus="true"><%= @card.caption %></textarea>
   <%= f.submit %>
+  <% if @card.valid? %>
+    <%= link_to 'Delete', story_card_path(@story, @card), method: 'delete' %>
+  <% end %>
 <% end %>
 
 <script>
@@ -54,7 +60,7 @@
 		      },
 		      send: function(e, data) {
             // Remove the old photo
-            $('.photo-upload-container img').remove();
+            $('.photo img').remove();
 
 		        $('.progress').fadeIn();
 		      },
@@ -75,7 +81,7 @@
 
             $('.progress').toggle();
             // Append the new photo
-            $('.photo-upload-container')
+            $('.photo')
               .append("<img src="+ url +" height=\"500px\"/>")
 		      },
 		      done: function (event, data) {

@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     if current_user
       redirect_to home_path
     end
+    @trendings = Story.trendings
   end
 
   def home

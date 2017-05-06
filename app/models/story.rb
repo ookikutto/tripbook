@@ -22,4 +22,9 @@ class Story < ApplicationRecord
     # so getting keys from the hash and calculating the number of keys
     impressions.group(:ip_address).size.keys.length
   end
+
+  def self.trendings
+    trendings = Story.all.sort_by{ |story| -story.unique_impression_count }
+    trendings[0..4]
+  end
 end

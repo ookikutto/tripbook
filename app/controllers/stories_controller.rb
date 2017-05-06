@@ -1,5 +1,7 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user!, except: [ :show ]
+  before_action :authorize_user, except: [ :show, :new, :create ]
+  before_action :find_story, except: [ :new, :create ]
 
   def show
   end
@@ -34,6 +36,12 @@ class StoriesController < ApplicationController
 
   private
 
+  def authorize_user
+    if @story.user.id != current_user.id
+      redirect_to home_path
+    end
+  end
+
   def story_params
     params.require(:story).permit(:title, :featured)
   end
@@ -42,4 +50,10 @@ class StoriesController < ApplicationController
     params.require(:place).permit(:name)
   end
 
+  def find_story
+    @story ||= Story.find_by id: params[:id]
+    if @story.nil?
+      redirect_to home_path
+    end
+  end
 end

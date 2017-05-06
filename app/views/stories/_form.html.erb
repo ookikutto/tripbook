@@ -1,6 +1,6 @@
 <!-- HIDDEN FORM FOR AJAX PHOTO UPLOAD -->
 <form action="https://<%= ENV['S3_BUCKET_NAME'] %>.s3-<%= ENV['AWS_REGION'] %>.amazonaws.com"
-  method="post" enctype="multipart/form-data" class="direct-upload" >
+      method="post" enctype="multipart/form-data" class="direct-upload">
   <input type="hidden" name="key">
   <input type="hidden" name="AWSAccessKeyId" value="<%= ENV['AWS_ACCESS_KEY_ID'] %>">
   <input type="hidden" name="acl" value="public-read">
@@ -8,96 +8,125 @@
   <input type="hidden" name="signature">
   <input type="hidden" name="success_action_status" value="201">
   <!-- UPLOAD ICON -->
-  <input type="file" name="file" class="hidden-file" id="hidden-file">
-  <label for="hidden-file">
-    <svg class="svgIcon-use" width="25" height="25" viewBox="0 0 25 25"><path d="M16.98 7.002h-.65a16.286 16.286 0 0 1-.257-.52c-.276-.581-.314-.66-.427-.857-.24-.417-.426-.625-.783-.625l-4.806.01c-.366-.01-.586.221-.825.647-.08.144-.153.291-.221.441l-.214.472c-.08.178-.147.32-.207.439H6.435C5.057 7.009 4 8.003 4 9.36v7.2c0 1.37 1.071 2.449 2.438 2.44h12.095A2.442 2.442 0 0 0 21 16.556v-5.55h-1v5.549c-.001.81-.645 1.444-1.467 1.444H6.435C5.622 18.004 5 17.377 5 16.561v-7.2c0-.79.596-1.351 1.435-1.351h2.74l.144-.248a8.19 8.19 0 0 0 .389-.78c-.048.108.162-.36.21-.462a5.36 5.36 0 0 1 .186-.373 1.63 1.63 0 0 1 .085-.137l4.514-.009c.022.033.048.074.076.123.094.163.132.241.391.788.087.183.148.309.21.431.085.165.16.304.236.424l.146.236h1.278l-.06-1.001z"></path><path d="M12.499 15.999A3.485 3.485 0 0 1 9 12.498 3.484 3.484 0 0 1 12.499 9a3.485 3.485 0 0 1 3.499 3.499A3.485 3.485 0 0 1 12.499 16v-.001zm0-6.1c-1.411 0-2.598 1.188-2.598 2.599 0 1.412 1.187 2.601 2.598 2.601 1.411 0 2.598-1.189 2.598-2.6 0-1.41-1.187-2.6-2.598-2.6z"></path><path d="M21 7V5h-1v2h-2v1h2v2h1V8h2V7z"></path></svg>
-  </label>
+  <div class="text-center">
+    <input type="file" name="file" class="hidden-file" id="hidden-file">
+    <label for="hidden-file">
+      <div>Choose a file to upload</div>
+      <svg class="svgIcon-use" width="25" height="25" viewBox="0 0 25 25">
+        <path d="M16.98 7.002h-.65a16.286 16.286 0 0 1-.257-.52c-.276-.581-.314-.66-.427-.857-.24-.417-.426-.625-.783-.625l-4.806.01c-.366-.01-.586.221-.825.647-.08.144-.153.291-.221.441l-.214.472c-.08.178-.147.32-.207.439H6.435C5.057 7.009 4 8.003 4 9.36v7.2c0 1.37 1.071 2.449 2.438 2.44h12.095A2.442 2.442 0 0 0 21 16.556v-5.55h-1v5.549c-.001.81-.645 1.444-1.467 1.444H6.435C5.622 18.004 5 17.377 5 16.561v-7.2c0-.79.596-1.351 1.435-1.351h2.74l.144-.248a8.19 8.19 0 0 0 .389-.78c-.048.108.162-.36.21-.462a5.36 5.36 0 0 1 .186-.373 1.63 1.63 0 0 1 .085-.137l4.514-.009c.022.033.048.074.076.123.094.163.132.241.391.788.087.183.148.309.21.431.085.165.16.304.236.424l.146.236h1.278l-.06-1.001z"></path>
+        <path d="M12.499 15.999A3.485 3.485 0 0 1 9 12.498 3.484 3.484 0 0 1 12.499 9a3.485 3.485 0 0 1 3.499 3.499A3.485 3.485 0 0 1 12.499 16v-.001zm0-6.1c-1.411 0-2.598 1.188-2.598 2.599 0 1.412 1.187 2.601 2.598 2.601 1.411 0 2.598-1.189 2.598-2.6 0-1.41-1.187-2.6-2.598-2.6z"></path>
+        <path d="M21 7V5h-1v2h-2v1h2v2h1V8h2V7z"></path>
+      </svg>
+    </label>
+  </div>
   <!-- PROGRESS BAR -->
-  <div class="progress"  style="display: none">
+  <div class="progress-note"></div>
+  <div class="progress" style="display: none">
     <div class="progress-bar progress-bar-info progress-bar-striped"
-      role="progressbar">
+         role="progressbar">
     </div>
   </div>
 </form>
 
 <!-- ACTUAL FORM FOR STORY -->
 <%= form_for @story do |f| %>
-  <div class="featured">
-    <%= image_tag(@story.featured) if @story.featured.present? %>
-  </div>
+    <div class="col-md-8 ">
+      <div class="featured image-preview">
+        <%= image_tag(@story.featured) if @story.featured.present? %>
+      </div>
+    </div>
 
-  <%= f.text_field :title, placeholder: t(".title"), value: @story.title %>
-  <input type="text" name="place[name]" placeholder="<%= t('.place_name') %>"
-    value="<%= @story.place.name if @story.place.present? %>">
-  <%= f.hidden_field :featured %>
-  <%= f.submit %>
+    <div class="col-md-4 form-new-story">
+      <div class="form-group form-title">
+        <label for="title">Title <span class="required-label">*</span></label>
+        <%= f.text_field :title, placeholder: t(".title"), value: @story.title, :class => "form-control", :required => true %>
+      </div>
+
+      <div class="form-group form-place">
+        <label for="place">Place </label>
+        <input type="text" name="place[name]" placeholder="<%= t('.place_name') %>"
+               id="place" class="form-control"
+               value="<%= @story.place.name if @story.place.present? %>">
+      </div>
+      <%= f.hidden_field :featured %>
+      <div class="form-group">
+        <%= f.submit :class => "btn btn-default submit-btn" %>
+      </div>
+    </div>
 <% end %>
 
-
 <script>
-	$(document).on('turbolinks:load', function(){
-		$(function() {
-		  $('.direct-upload').each(function() {
-		    var form = $(this)
-		    $(this).fileupload({
-		      url: form.attr('action'),
-		      type: 'POST',
-		      autoUpload: true,
-		      dataType: 'xml', // This is really important as s3 gives us back the url of the file in a XML document
-		      add: function (event, data) {
-		        $.ajax({
-		          url: "/signed_urls",
-		          type: 'GET',
-		          dataType: 'json',
-		          data: {doc: {title: data.files[0].name}}, // send the file name to the server so it can generate the key param
-		          async: false,
-		          success: function(data) {
-		            // Now that we have our data, we update the form so it contains all
-		            // the needed data to sign the request
-		            form.find('input[name=key]').val(data.key)
-		            form.find('input[name=policy]').val(data.policy)
-		            form.find('input[name=signature]').val(data.signature)
-		          }
-		        })
-		        data.submit();
-		      },
-		      send: function(e, data) {
-            // Remove the old photo
-            $('.featured img').remove();
+    $(document).on('turbolinks:load', function () {
+        $(function () {
+            $('.direct-upload').each(function () {
+                var form = $(this)
+                $(this).fileupload({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    autoUpload: true,
+                    dataType: 'xml', // This is really important as s3 gives us back the url of the file in a XML document
+                    add: function (event, data) {
+                        $(".form-new-story").fadeIn();
+                        $('.progress-bar').css('width', 0);
 
-		        $('.progress').fadeIn();
-		      },
-		      progress: function(e, data){
-		        // This is what makes everything really cool, thanks to that callback
-		        // you can now update the progress bar based on the upload progress
-		        var percent = Math.round((data.loaded / data.total) * 100)
-		        $('.progress-bar').css('width', percent + '%')
-		      },
-		      fail: function(e, data) {
-		        console.log('fail')
-		      },
-		      success: function(data) {
-		        // Here we get the file url on s3 in an xml doc
-		        var url = $(data).find('Location').text()
+                        $.ajax({
+                            url: "/signed_urls",
+                            type: 'GET',
+                            dataType: 'json',
+                            data: {doc: {title: data.files[0].name}}, // send the file name to the server so it can generate the key param
+                            async: false,
+                            success: function (data) {
+                                // Now that we have our data, we update the form so it contains all
+                                // the needed data to sign the request
+                                form.find('input[name=key]').val(data.key)
+                                form.find('input[name=policy]').val(data.policy)
+                                form.find('input[name=signature]').val(data.signature)
+                            }
+                        })
+                        data.submit();
+                    },
+                    send: function (e, data) {
+                        // Remove the old photo
+                        $('.featured img').remove();
 
-		        $('#story_featured').val(url) // Update the real input in the other form
+                        $('.progress').fadeIn();
+                    },
+                    progress: function (e, data) {
+                        // This is what makes everything really cool, thanks to that callback
+                        // you can now update the progress bar based on the upload progress
+                        $(".progress-note").text(data.loaded/1000 + "KB of total " + data.total/1000 + "KB uploaded.")
+                        console.log(data.loaded/1000 + "KB of total " + data.total/1000 + "KB uploaded.");
+                        var percent = Math.round((data.loaded / data.total) * 100);
+                        $('.progress-bar').css('width', percent + '%')
+                    },
+                    fail: function (e, data) {
+                        console.log('fail')
+                    },
+                    success: function (data) {
+                        // Here we get the file url on s3 in an xml doc
+                        var url = $(data).find('Location').text()
 
-            $('.progress').toggle();
-            // Append the new photo
-            $('.featured')
-              .append("<img src="+ url +" height=\"500px\"/>")
-		      },
-		      done: function (event, data) {
-            // $('.progress-bar').removeClass('progress-bar-info')
-            //   .addClass('progress-bar-success')
-		        $('.progress').fadeOut(1000, function() {
-		          $('.progress-bar').css('width', 0)
-		        })
-		      },
-		    })
+                        $('#story_featured').val(url) // Update the real input in the other form
 
-		  })
-		})
+//                        $('.progress').toggle();
 
-	})
+                        $(".progress-note").text("Upload finished. Ready to save.")
+
+                        // Append the new photo
+                        $('.featured')
+                            .append("<img src=" + url + ">")
+                    },
+                    done: function (event, data) {
+                        // $('.progress-bar').removeClass('progress-bar-info')
+                        //   .addClass('progress-bar-success')
+//                        $('.progress').fadeOut(1000, function () {
+//                            $('.progress-bar').css('width', 0)
+//                        })
+                    },
+                })
+
+            })
+        })
+
+    })
 </script>

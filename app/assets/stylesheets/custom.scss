@@ -435,16 +435,23 @@ footer {
 
 
 /* STORY */
-
 .full-height {
   height: 100%;
+  min-height: 400px;
+  border-radius: 2px;
+  box-shadow: 0 2px 12px -5px rgba(0,0,0,.1);
+  border: 1px solid #f2f2f2;
+  margin: 0 auto 50px auto;
+  padding-bottom: 50px;
 }
-
+.full-height > h1 {
+  text-align: center;
+  margin: 40px 0;
+}
 /* FORM */
 .photo {
   height: 400px;
 }
-
 .hidden-file {
   width: 0.1px;
   height: 0.1px;
@@ -454,9 +461,65 @@ footer {
   z-index: -1;
   display: none;
 }
-
 .hidden-file + label {
-	cursor: pointer; /* "hand" cursor */
+  background-color: #f50;
+  color: #fff;
+  display: inline-block;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  font-weight: 100;
+  font-size: 15px;
+  padding: 8px 15px;
+  height: 40px;
+  cursor: pointer;
+}
+.hidden-file + label > div {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 3px;
+}
+.direct-upload .progress-note {
+  color: #666;
+  margin-top: 30px;
+  padding-bottom: 4px;
+  min-height: 15px;
+  transition: min-height .3s cubic-bezier(.28,.42,.18,1);
+  font-size: 12px;
+}
+.direct-upload .progress {
+  height: 10px;
+}
+.direct-upload .progress .progress-bar {
+  background-color: rgb(0, 102, 204);
+  background-image: linear-gradient(to right, rgb(33, 137, 201), rgb(28, 117, 201));
+}
+.form-new-story {
+  display: none;
+}
+.featured.image-preview > img {
+  width: 100%;
+}
+.form-new-story .form-title > label,
+.form-new-story .form-place > label {
+  color: #333;
+  font-weight: 100;
+}
+.form-new-story .form-title > input,
+.form-new-story .form-place > input {
+  font-size: 14px;
+  line-height: 20px;
+  transition: border-color .1s;
+  padding: 2px 7px;
+  height: 26px;
+}
+.form-new-story .required-label {
+  color: #f50;
+  font-weight: bold;
+}
+.form-new-story .submit-btn {
+  background-color: #f50;
+  border-color: #f50;
+  color: #fff;
 }
 
 #card_caption {
@@ -469,7 +532,6 @@ footer {
   font-family: monospace;
   font-size: 16px;
 }
-
 
 /* SIDE CONTAINER */
 .side-container {

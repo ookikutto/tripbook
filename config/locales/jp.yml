@@ -23,6 +23,42 @@ jp:
     search-placeholder: ストーリー、旅行者を検索する ...
     profile: マイプロフィール
     edit-profile: プロフィール編集
+
+  # APPLICATION.HTML
+  layouts:
+    header:
+      make-story: ストーリー書く
+
+  # MODEL
+  activerecord:
+    models:
+      story:
+        one: "ストーリー"
+        other: "ストーリー"
+    attributes:
+      story:
+        name: "名前"
+        email: "イーメル"
+        password: "パースワード"
+    errors:
+      messages:
+        blank: "cannot be blank"
+        invalid: "だめです"
+        record_invalid: "invalid"
+      models:
+        user:
+          attributes:
+            name:
+              blank: "cannot be blank"
+
+  # STORIES VIEW
+  stories:
+    new:
+      title: 題名
+      place_name: 場所（コンマで区切る）
+
+
+
   datetime:
     distance_in_words:
       about_x_hours:

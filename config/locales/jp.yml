@@ -56,9 +56,15 @@ jp:
     new:
       title: 題名
       place_name: 場所（コンマで区切る）
+    form:
+      place_name: 場所（コンマで区切る）
 
+  # SHARED VIEW
+  shared:
+    card_navigator:
+      empty_card: 写真がありません
 
-
+  # DATETIME
   datetime:
     distance_in_words:
       about_x_hours:

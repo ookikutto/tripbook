@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user!, except: [ :show ]
-  before_action :authorize_user, except: [ :show, :new, :create ]
   before_action :find_story, except: [ :new, :create ]
+  before_action :authorize_user, except: [ :show, :new, :create ]
 
   def show
   end
@@ -19,7 +19,6 @@ class StoriesController < ApplicationController
     if @story.save
       redirect_to new_story_card_path(@story)
     else
-      puts @story.errors.full_messages.to_sentence
       flash[:danger] = "Create story failed"
       redirect_to new_story_path
     end
@@ -29,9 +28,13 @@ class StoriesController < ApplicationController
   end
 
   def update
+    @story.update_attributes story_params
+    redirect_to edit_story_path(@story)
   end
 
   def destroy
+    @story.destroy
+    redirect_to home_path
   end
 
   private

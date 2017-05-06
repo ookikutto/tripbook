@@ -22,7 +22,9 @@
     <% end %> <!-- end each -->
 
     <% if story.timeline.empty? %>
-      <div class="empty-card"></div>
+      <div class="empty-card">
+        <%= t ".empty_card" %>
+      </div>
     <% end %>
   </div> <!-- end cards-container -->
 </div> <!-- end side-container -->

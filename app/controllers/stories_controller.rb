@@ -3,6 +3,8 @@ class StoriesController < ApplicationController
   before_action :find_story, except: [ :new, :create ]
   before_action :authorize_user, except: [ :show, :new, :create ]
 
+  before_action :log_impression, only: :show
+
   def show
   end
 
@@ -57,6 +59,15 @@ class StoriesController < ApplicationController
     @story ||= Story.find_by id: params[:id]
     if @story.nil?
       redirect_to home_path
+    end
+  end
+
+  def log_impression
+    find_story
+    if current_user
+      @story.impressions.create(ip_address: request.remote_ip, user_id: current_user.id)
+    else
+      @story.impressions.create(ip_address: request.remote_ip)
     end
   end
 end

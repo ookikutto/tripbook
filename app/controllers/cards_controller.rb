@@ -32,7 +32,11 @@ class CardsController < ApplicationController
 
   def destroy
     @card.destroy
-    redirect_to 
+    if @story.cards.empty?
+      redirect_to new_story_card_path(@story)
+    else
+      redirect_to edit_story_card_path(@story, @story.lastest_card)
+    end
   end
 
   private

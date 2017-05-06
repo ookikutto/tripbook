@@ -1,22 +1,28 @@
 <div class="side-container">
-  <h2><%= story.title %></h2>
+  <%= link_to 'New Photo', new_story_card_path(story), class: 'new-photo btn btn-info' %>
+  <%= link_to story_path(story) do %>
+    <h2><%= story.title %></h2>
+  <% end %>
+
   <div class="cards-container">
     <% story.timeline.each do |card| %>
-      <div class="card-container <%= "just-caption" if card.photo.empty? %>">
-        <% if card.photo.present? %>
-          <%= link_to edit_story_card_path(story, card) do %>
+      <% if card.photo.present? %>
+        <%= link_to edit_story_card_path(story, card) do %>
+          <div class="card-container" id="card-<%= card.id %>">
             <%= image_tag(card.photo) %>
-          <% end %>
-        <% else %>
-            <%= link_to edit_story_card_path(story, card) do %>
-              <%= card.caption %>
-            <% end %>
+          </div>
         <% end %>
-      </div>
-    <% end %>
+      <% else %>
+        <%= link_to edit_story_card_path(story, card) do %>
+          <div class="card-container just-caption" id="card-<%= card.id %>">
+            <%= card.caption %>
+          </div>
+        <% end %> <!-- end link_to -->
+      <% end %> <!-- end if -->
+    <% end %> <!-- end each -->
 
     <% if story.timeline.empty? %>
       <div class="empty-card"></div>
     <% end %>
-  </div>
-</div>
+  </div> <!-- end cards-container -->
+</div> <!-- end side-container -->

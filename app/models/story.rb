@@ -7,4 +7,8 @@ class Story < ApplicationRecord
   def timeline
     cards.order( created_at: :asc)
   end
+
+  def lastest_card
+    cards.order( created_at: :asc).last
+  end
 end

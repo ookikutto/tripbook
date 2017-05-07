@@ -34,7 +34,7 @@
             </div>
           </div>
         </div>
-        <p class="col-md-1 hidden-xs">または</p>
+        <p class="col-md-1 hidden-xs text-or">または</p>
         <div class="col-md-2">
           <%= link_to new_user_session_path, :class => "upload-btn btn" do %>
               自身のアップロード
@@ -74,7 +74,9 @@
         <!-- end story block -->
 
         <div class="row text-center">
-          <a href="#trending-page" class="btn trending-btn">Explore our trending stories</a>
+          <%= link_to new_user_session_path, :class => "btn trending-btn" do %>
+              <%= t 'landing.explore' %>
+          <% end %>
         </div>
 
       </div>
@@ -84,7 +86,7 @@
       <section>
         <div class="map-wrapper" style="height: 360px; border: 1px solid #000 ">
           <div class="map">
-            <h1 class="text-center">MAP</h1>
+            <h1 class="text-center"><%= t 'landing.map' %></h1>
           </div>
         </div>
       </section>

@@ -36,30 +36,30 @@
             </div>
 
             <%= link_to story_path(story) do %>
-                <p class="read-more">Read more ...</p>
+                <p class="read-more"><%= t('home.read-more') %></p>
             <% end %>
 
             <div class="story-action">
               <div class="like-count">
                 <span class="glyphicon glyphicon-heart-empty like-btn" aria-hidden="true"></span>
-                <span class="like-text"> 2037 likes</span>
+                <span class="like-text"> 2037 <%= t('home.like') %></span>
               </div>
               <% if story.trending %>
                   <div class="trending">
                     <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-                    <span class="trending-text"> Trending</span>
+                    <span class="trending-text"> <%= t('home.trending') %></span>
                   </div>
               <% end %>
               <div class="comment-count">
                 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                <span class="comment-text"> 31 responses</span>
+                <span class="comment-text"> 31 <%= t('home.response') %></span>
               </div>
             </div>
           </div>
       <% end %>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 right-area">
       <h2 class="text-center">場所</h2>
       <div class="row">
         <div class="col-sm-4 place-item">

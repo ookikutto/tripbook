@@ -34,8 +34,8 @@
 </div>
 <%= form_for [@story, @card] do |f| %>
     <%= f.hidden_field :photo %>
-    <textarea name="card[caption]" id="card_caption" rows="2" placeholder="Tell the story..." class="caption" autofocus="true"><%= @card.caption %></textarea>
-    <%= f.submit :class => "btn submit-btn" %>
+    <textarea name="card[caption]" id="card_caption" rows="2" placeholder="<%= t('cards.new.tell-story') %>" class="caption" autofocus="true"><%= @card.caption %></textarea>
+    <%= f.submit t('cards.new.create'), :class => "btn submit-btn" %>
     <% if @card.id.present? %>
         <%= link_to 'Delete', story_card_path(@story, @card), method: 'delete', :class => "btn btn-danger" %>
     <% end %>

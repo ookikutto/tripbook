@@ -153,7 +153,7 @@ nav.navbar {
   .navbar-header {
     .navbar-brand {
       color: white;
-      background-color: orangered;
+      //background-color: orangered;
       font-weight: bold;
     }
   }
@@ -278,6 +278,14 @@ nav .sign-up-btn:hover {
 
   .search-upload {
     margin: 30px 0;
+
+    .text-or {
+      font-size: 16px;
+      line-height: 50px;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
 
     .search-wrapper {
       .input-group > input {
@@ -453,6 +461,7 @@ section {
     border-radius: 3px;
     padding: 20px;
     margin-bottom: 30px;
+    background: #fff;
 
     .uploader-info {
       .profile-pic {
@@ -610,6 +619,22 @@ section {
       font-size: 20px;
       font-weight: bold;
       color: white;
+    }
+  }
+
+  .right-area {
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    border: 1px solid rgba(0,0,0,.09);
+    border-radius: 3px;
+    margin-bottom: 30px;
+    background: #fff;
+
+    > h2 {
+      margin-bottom: 30px;
+      font-size: 30px;
+      line-height: 44px;
+      font-weight: bold;
+      color: #666;
     }
   }
 }

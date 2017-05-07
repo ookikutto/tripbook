@@ -24,6 +24,18 @@ jp:
     profile: マイプロフィール
     edit-profile: プロフィール編集
 
+  # landing page
+  landing:
+    explore: トレンドストーリーを探る
+    map: マップ
+
+  # home page
+  home:
+    read-more: 続きを読む。。。
+    like: いいね！
+    trending: トレンド
+    response: 応答
+
   # APPLICATION.HTML
   layouts:
     header:
@@ -54,10 +66,20 @@ jp:
   # STORIES VIEW
   stories:
     new:
-      title: 題名
-      place_name: 場所（コンマで区切る）
+      new-story: 新しいストーリー
+      guide: まず、ストーリーカバーを作成しましょう。
+      guide-upload-btn: アップロードするファイルを選択する
     form:
+      title: 題名
+      place: 場所
       place_name: 場所（コンマで区切る）
+      create: ストーリー書く
+
+  # CARDS VIEW
+  cards:
+    new:
+      tell-story: ストーリーを言ってください...
+      create: カードを作る
 
   # SHARED VIEW
   shared:
@@ -76,3 +98,5 @@ jp:
       less_than_x_minutes:
         one: 1分以下
         other: '%{count}分以下'
+      x_days: '%{count}日前'
+

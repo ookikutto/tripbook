@@ -1,4 +1,8 @@
 <div class="container full-height">
-  <h1>New Story</h1>
-  <%= render 'form', locals: { story: @story } %>
+
+  <div class="intro-wrapper margin-top-15-percent">
+    <h1>New Story</h1>
+    <h3 class="text-center ">First let's create your story cover.</h3>
+  </div>
+  <%= render 'form', locals: {story: @story} %>
 </div>

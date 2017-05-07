@@ -30,13 +30,13 @@
 
 <!-- ACTUAL FORM FOR STORY -->
 <%= form_for @story do |f| %>
-    <div class="col-md-8 ">
+    <div class="">
       <div class="featured image-preview">
         <%= image_tag(@story.featured) if @story.featured.present? %>
       </div>
     </div>
 
-    <div class="col-md-4 form-new-story">
+    <div class="form-new-story">
       <div class="form-group form-title">
         <label for="title">Title <span class="required-label">*</span></label>
         <%= f.text_field :title, placeholder: t(".title"), value: @story.title, :class => "form-control", :required => true %>

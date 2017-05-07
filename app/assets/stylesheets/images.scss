@@ -57,7 +57,9 @@
   left: 0;
   height: 100vh;
   width: 100%;
-  background-color: rgba(0, 0, 0, .9);
+  background: #bdc3c7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #bdc3c7, #2c3e50); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #bdc3c7, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   padding-top: 30px;
   padding-bottom: 30px;
   z-index: 9;
@@ -68,7 +70,7 @@
 }
 .mySlides > img {
   width: 100%;
-  height: 100%;
+  height: 90%;
   object-fit: contain;
 }
 /* Slideshow container */
@@ -76,7 +78,6 @@
   height: 80%;
   top: 50%;
   transform: translateY(-50%);
-  background: black;
   padding: 0;
 }
 .mySlides {
@@ -117,17 +118,17 @@
   opacity: 0;
   //transition: visibility 0s, opacity 0.9s ease;
   color: #f2f2f2;
-  font-size: 15px;
+  font-size: 18px;
   padding: 8px 12px;
   position: absolute;
   bottom: 8px;
   text-align: center;
   display: inline-block;
   width: auto;
-  background: grey;
   border-radius: 3px;
   left: 50%;
   transform: translateX(-50%);
+  overflow: visible;
 }
 /* Number text (1/3 etc) */
 .numbertext {
@@ -140,20 +141,20 @@
   position: absolute;
   bottom: 0; right: 0;
 }
-/* The dots/bullets/indicators */
-.dot {
-  cursor:pointer;
-  height: 13px;
-  width: 13px;
-  margin: 0 2px;
-  background-color: #717171;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.9s ease;
-}
-.active, .dot:hover {
-  background-color: #bbb;
-}
+// /* The dots/bullets/indicators */
+// .dot {
+//   cursor:pointer;
+//   height: 13px;
+//   width: 13px;
+//   margin: 0 2px;
+//   background-color: #717171;
+//   border-radius: 50%;
+//   display: inline-block;
+//   transition: background-color 0.9s ease;
+// }
+// .active, .dot:hover {
+//   background-color: #bbb;
+// }
 .toggle-info {
   position: absolute;
   top: 15px;

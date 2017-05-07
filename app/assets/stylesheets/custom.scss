@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Rokkitt');
 
 body, html {
   height: 100%;
@@ -12,6 +13,26 @@ body {
 
 .content {
   min-height: 100%;
+}
+
+.small-headline {
+  font-family: Gill Sans, Verdana;
+  font-size: 11px;
+  line-height: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.large-headline {
+  font-family: times, Times New Roman, times-roman, georgia, serif;
+  color: #444;
+  margin: 0;
+  padding: 0px 0px 6px 0px;
+  font-size: 51px;
+  line-height: 44px;
+  letter-spacing: -2px;
+  font-weight: bold;
 }
 
 form {
@@ -529,8 +550,7 @@ footer {
     border: none;
 }
 .caption {
-  font-family: monospace;
-  font-size: 16px;
+  font-family: 'Rokkitt', serif;
 }
 
 /* SIDE CONTAINER */

@@ -1,12 +1,4 @@
-<h1><%= @story.title %></h1>
-<% if authorize_user?(@story, current_user) %>
-  <%= link_to 'Edit', edit_story_path(@story) %>
-  <%= link_to 'Delete', edit_story_path(@story) %>
-<% end %>
-
-<p id="notice"><%= notice %></p>
-
-<div class="container image-show-page">
+<div class="container image-show-page" style="padding: 0">
   <!-- start slideshow container -->
   <div class="col-md-12 slideshow-container">
     <!-- start featured -->
@@ -35,7 +27,7 @@
       <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
     </a>
     <br>
-    <div style="text-align:center">
+    <div style="text-align:center" style="display: none">
       <% (cards_count + 1).times do |i| %>
         <span class="dot slideshow-current" data-index="<%= i + 1 %>"></span>
       <% end %>

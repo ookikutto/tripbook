@@ -2,22 +2,34 @@
   <!-- start slideshow container -->
   <div class="col-md-12 slideshow-container">
     <!-- start featured -->
-    <div class="mySlides fade-animation">
-      <%= image_tag @story.featured, style: "width:100%" if @story.featured.present?%>
+    <div class="mySlides fade-animation"
+         style="position: absolute;
+             left: 0;
+             height: 100vh;
+             width: 100%;">
+      <div class="image-featured"
+           style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<%= @story.featured if @story.featured.present? %>);
+               width:100%">
+        <div class="headline-wrapper">
+          <div class="large-headline"><%= @story.title %></div>
+          <div class="small-headline"><%= @story.place %></div>
+        </div>
+      </div>
+
     </div>
     <!-- end featured -->
 
     <!-- start cards -->
     <% timeline = @story.timeline %>
-    <% cards_count = timeline.size%>
+    <% cards_count = timeline.size %>
     <% @story.timeline.each_with_index do |card, index| %>
-      <div class="mySlides fade-animation card-container">
-        <div class="numbertext"><%= index + 1 %> / <%= cards_count %></div>
-        <%= image_tag card.photo, style: "width:100%" %>
-        <% if card.caption.present? %>
-          <div class="text caption"><%= card.caption %></div>
-        <% end %>
-      </div>
+        <div class="mySlides fade-animation card-container">
+          <div class="numbertext"><%= index + 1 %> / <%= cards_count %></div>
+          <%= image_tag card.photo, style: "width:100%" %>
+          <% if card.caption.present? %>
+              <div class="text caption"><%= card.caption %></div>
+          <% end %>
+        </div>
     <% end %>
     <!-- end cards -->
 
@@ -29,7 +41,7 @@
     <br>
     <div style="text-align:center" style="display: none">
       <% (cards_count + 1).times do |i| %>
-        <span class="dot slideshow-current" data-index="<%= i + 1 %>"></span>
+          <span class="dot slideshow-current" data-index="<%= i + 1 %>"></span>
       <% end %>
     </div>
   </div>
@@ -89,73 +101,73 @@
 
 
 <script>
-$(document).ready(function () {
-    var slideIndex = 1;
-    showSlides(slideIndex);
+    $(document).ready(function () {
+        var slideIndex = 1;
+        showSlides(slideIndex);
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        var slides = $(".mySlides");
-        var dots = $(".dot");
-
-        if (n > slides.length) {
-            slideIndex = 1
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
         }
-        if (n < 1) {
-            slideIndex = slides.length
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
         }
-        $.each(slides, function () {
-            $(this).hide();
+
+        function showSlides(n) {
+            var slides = $(".mySlides");
+            var dots = $(".dot");
+
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            $.each(slides, function () {
+                $(this).hide();
+            });
+            $.each(dots, function () {
+                $(this).removeClass("active");
+            });
+            $(slides.get(slideIndex - 1)).show().fadeIn();
+            $(dots.get(slideIndex - 1)).addClass("active");
+        }
+
+        $(".slideshow-prev").click(function () {
+            plusSlides(-1);
         });
-        $.each(dots, function () {
-            $(this).removeClass("active");
+
+        $(".slideshow-next").click(function () {
+            plusSlides(1);
         });
-        $(slides.get(slideIndex - 1)).show().fadeIn();
-        $(dots.get(slideIndex - 1)).addClass("active");
-    }
 
-    $(".slideshow-prev").click(function () {
-        plusSlides(-1);
+        $(".slideshow-current").click(function () {
+            var navToSlide = $(this).data("index");
+            currentSlide(navToSlide);
+        });
+
+        $("#files").change(function () {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById("image").src = e.target.result;
+            };
+            reader.readAsDataURL(this.files[0]);
+            $(".no-image").hide();
+        })
+
+        $(".toggle-info").click(function () {
+            var commentContainer = $(".comment-container");
+            var slideshowContainer = $(".slideshow-container");
+
+            if (commentContainer.hasClass("col-md-4")) {
+                // hide comment, expand slideshow
+                commentContainer.removeClass("col-md-4").fadeOut().addClass("hidden-md");
+                slideshowContainer.removeClass("col-md-8").fadeIn().addClass("col-md-12");
+            } else if (commentContainer.hasClass("hidden-md")) {
+                commentContainer.removeClass("hidden-md").addClass("col-md-4").fadeIn();
+                slideshowContainer.removeClass("col-md-12").addClass("col-md-8");
+            }
+        });
     });
-
-    $(".slideshow-next").click(function () {
-        plusSlides(1);
-    });
-
-    $(".slideshow-current").click(function () {
-        var navToSlide = $(this).data("index");
-        currentSlide(navToSlide);
-    });
-
-    $("#files").change(function () {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            document.getElementById("image").src = e.target.result;
-        };
-        reader.readAsDataURL(this.files[0]);
-        $(".no-image").hide();
-    })
-
-    $(".toggle-info").click(function(){
-        var commentContainer = $(".comment-container");
-        var slideshowContainer = $(".slideshow-container");
-
-        if(commentContainer.hasClass("col-md-4")){
-            // hide comment, expand slideshow
-            commentContainer.removeClass("col-md-4").fadeOut().addClass("hidden-md");
-            slideshowContainer.removeClass("col-md-8").fadeIn().addClass("col-md-12");
-        } else if(commentContainer.hasClass("hidden-md")){
-            commentContainer.removeClass("hidden-md").addClass("col-md-4").fadeIn();
-            slideshowContainer.removeClass("col-md-12").addClass("col-md-8");
-        }
-    });
-});
 
 </script>

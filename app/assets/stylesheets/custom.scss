@@ -371,6 +371,14 @@ nav .sign-up-btn:hover {
   color: white;
 }
 
+.place-wrapper {
+  height: 160px !important;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
 // home page
 .container.home-page {
 
@@ -449,6 +457,17 @@ nav .sign-up-btn:hover {
 footer {
   background-color: #7a7f82;
   padding: 1em 3em;
+}
+
+.home-page .place-wrapper {
+  height: 50px !important;
+}
+
+.home-page .place-name {
+  position: relative !important;
+  font-size: 14px !important;
+  bottom: 0 !important;
+  line-height: inherit !important;
 }
 
 @import "images";
@@ -581,9 +600,11 @@ footer {
   outline: none;
   border: none;
   padding: 0 15px;
+  margin: 10px 0px;
 }
 .caption {
   font-family: 'Rokkitt', serif;
+  font-size: 16px;
 }
 .direct-upload {
 

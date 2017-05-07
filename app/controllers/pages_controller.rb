@@ -5,11 +5,11 @@ class PagesController < ApplicationController
     if current_user
       redirect_to home_path
     end
-    @trendings = Story.trendings
+    @trendings = TrendingStory.get
   end
 
   def home
-    @image = Image.all.order(created_at: :desc)
+    @feeds = current_user.feed
   end
 
   def about

@@ -10,29 +10,76 @@
 </style>
 
 
-<div class="home-page">
+<div class="container home-page landing-page">
+  <div class="row trending-for-guest">
+    <div class="col-md-8 col-sm-12">
+      <% @feeds.each do |story| %>
 
-  <% @image.each do |image| %>
-      <div class="col-md-8 col-md-offset-2 story-wrapper">
-        <div class="uploader-info">
-          <a href="#uploader-profile" class="profile-pic">
-            <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
-          </a>
-          <div class="left">
-            <a href="#uploader-profile" class="name"><%= truncate(image.user.email, length: 30) %></a>
+        <% if story.trending %>
+          <p>Trending</p>
+        <% end %>
+        <% if story.most_recent %>
+          <p>Most recent</p>
+        <% end %>
+        <div class="story-item">
+          <div class="story-wrapper" style="background-image: url(<%= story.featured %>);">
+            <%= link_to "", story_path(story), class: 'story-detail-link' %>
+            <div class="uploader-area">
+              <a href="#uploader-profile">
+                <div class="uploader-wrapper">
+                  <div class="profile-pic" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+                  <p class="name"><%= story.user.email %></p>
+                </div>
+              </a>
+            </div>
           </div>
-          <div class="right" id="parent">
-            <span class="date-upload" id="hover-content"><%= image.created_at %></span>
-            <%= distance_of_time_in_words_to_now(image.created_at) %>
+          <p class="story-title"><%= truncate story.title, length: 30 %></p>
+          <div class="story-stat">
+            <div class="like-count">
+              <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 2037
+            </div>
+            <div class="comment-count">
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 31
+            </div>
           </div>
         </div>
-        <%= link_to image do %>
-            <div class="story-cover" style="background-image: url(<%= image.file %>);">
-            </div>
-        <% end %>
-        <div class="story-title">
-          <%= truncate image.title, length: 30 %>
+
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <h2 class="text-center">場所</h2>
+      <div class="row trending-for-guest">
+        <div class="col-sm-4 story-item">
+          <div class="story-wrapper place-wrapper" style="background-image: url(http://lorempixel.com/640/480/city);">
+            <p class="story-title place-name">New York</p>
+          </div>
+        </div>
+        <div class="col-sm-4 story-item">
+          <div class="story-wrapper place-wrapper" style="background-image: url(http://lorempixel.com/640/480/city);">
+            <p class="story-title place-name">京都</p>
+          </div>
+        </div>
+        <div class="col-sm-4 story-item">
+          <div class="story-wrapper place-wrapper" style="background-image: url(http://lorempixel.com/640/480/city);">
+            <p class="story-title place-name">京都</p>
+          </div>
+        </div>
+        <div class="col-sm-4 story-item">
+          <div class="story-wrapper place-wrapper" style="background-image: url(http://lorempixel.com/640/480/city);">
+            <p class="story-title place-name">京都</p>
+          </div>
+        </div>
+        <div class="col-sm-4 story-item">
+          <div class="story-wrapper place-wrapper" style="background-image: url(http://lorempixel.com/640/480/city);">
+            <p class="story-title place-name">京都</p>
+          </div>
+        </div>
+        <div class="col-sm-4 story-item">
+          <div class="story-wrapper place-wrapper" style="background-image: url(http://lorempixel.com/640/480/city);">
+            <p class="story-title place-name">京都</p>
+          </div>
         </div>
       </div>
-  <% end %>
+    </div>
+  </div>
 </div>

@@ -7,5 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create email: '1@1.com', password: '111111'
-Place.create name: 'New York'
-Story.create title: 'The best trip to New York, ever', place: Place.last, user: User.last
+Place.create name: 'Somewhere in Vietnam'
+20.times do
+  Story.create title: 'Ramdon Title with some more random to make it longer', place: Place.find_by(name: 'Somewhere in Vietnam'), featured: 'http://lorempixel.com/640/480/city', user: User.first
+end

@@ -453,8 +453,6 @@ footer {
 
 @import "images";
 
-
-
 /* STORY */
 .full-height {
   height: 100%;
@@ -464,15 +462,16 @@ footer {
   border: 1px solid #f2f2f2;
   margin: 0 auto 50px auto;
   padding-bottom: 50px;
+  background: white;
 }
 .full-height > h1 {
   text-align: center;
   margin: 40px 0;
 }
 /* FORM */
-.photo {
-  height: 400px;
-}
+//.photo {
+//  height: 400px;
+//}
 .hidden-file {
   width: 0.1px;
   height: 0.1px;
@@ -543,32 +542,112 @@ footer {
   color: #fff;
 }
 
+/* story form */
+.story-form-wrapper {
+  height: 70vh;
+  border: 1px solid #e5e5e5;
+  background-color: #f6f7f9;
+  box-sizing: border-box;
+  padding: 20px;
+
+  .photo-upload-container {
+    position: relative;
+    height: calc(100% - 90px);
+
+    .photo {
+      text-align: center;
+      height: 100%;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .img-blank {
+        background-image: linear-gradient(135deg, #846170, #70929c);
+        height: 100%;
+        width: 100%;
+        display: block;
+      }
+    }
+  }
+}
 #card_caption {
+  display: block;
+  width: 100%;
   overflow: auto;
-   resize: none;
-    outline: none;
-    border: none;
+  resize: none;
+  outline: none;
+  border: none;
+  padding: 0 15px;
 }
 .caption {
   font-family: 'Rokkitt', serif;
+}
+.direct-upload {
+
+}
+.direct-upload > label {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background-color: aliceblue;
+  border-radius: 50%;
+  border: 4px solid #333;
+  color: #333;
+  height: 55px;
+  font-size: 20px;
+  padding-top: 10px;
+}
+.submit-btn {
+  color: white;
+  background: #f50;
 }
 
 /* SIDE CONTAINER */
 .side-container {
   h2 {}
   position: relative;
-  .new-photo {
+
+  .new-photo-btn-wrapper {
     position: absolute;
-    top: 0; right: 0;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    background-color: #f6f7f9;
+    border: 1px solid #e5e5e5;
+    border-top: none;
+
+    .new-photo {
+      margin-left: 20px;
+      width: calc(100% - 40px);
+      color: #999;
+      border: 2px dashed #999;
+      border-radius: 2px;
+      box-sizing: border-box;
+      background-color: white;
+    }
   }
 
   .cards-container {
-    height: 600px;
+    height: 70vh;
+    border: 1px solid #e5e5e5;
     overflow: auto;
+    background-color: #f6f7f9;
+    box-sizing: border-box;
+    padding: 20px;
+    padding-bottom: 60px;
 
     .card-container {
       height: 150px;
-      img { max-width: 100%; max-height: 100%; }
+      margin-bottom: 10px;
+      img {
+        width: 100%;
+        object-fit: cover;
+        height: 100%;
+      }
     }
     .just-caption {
       border: 1px solid #000;

@@ -1,0 +1,31 @@
+<div class="side-container">
+  <div class="cards-container">
+    <% story.timeline.each do |card| %>
+        <% if card.photo.present? %>
+            <%= link_to edit_story_card_path(story, card) do %>
+                <div class="card-container" id="card-<%= card.id %>">
+                  <%= image_tag(card.photo) %>
+                </div>
+            <% end %>
+        <% else %>
+            <%= link_to edit_story_card_path(story, card) do %>
+                <div class="card-container just-caption" id="card-<%= card.id %>">
+                  <%= card.caption %>
+                </div>
+            <% end %> <!-- end link_to -->
+        <% end %> <!-- end if -->
+    <% end %> <!-- end each -->
+
+    <% if story.timeline.empty? %>
+        <div class="empty-card">
+          <%= t ".empty_card" %>
+        </div>
+    <% end %>
+    <div class="new-photo-btn-wrapper">
+      <%= link_to new_story_card_path(story), class: 'new-photo btn' do %>
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      <% end %>
+    </div>
+  </div> <!-- end cards-container -->
+
+</div> <!-- end side-container -->

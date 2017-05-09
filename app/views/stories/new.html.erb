@@ -1,0 +1,8 @@
+<div class="container full-height">
+
+  <div class="intro-wrapper margin-top-15-percent">
+    <h1><%= t('stories.new.new-story') %></h1>
+    <h3 class="text-center "><%= t('stories.new.guide') %></h3>
+  </div>
+  <%= render 'form', locals: {story: @story} %>
+</div>

@@ -31,7 +31,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <%= link_to "Upload", controller: 'images', action: 'new'  %>
+          <%= link_to t('layouts.header.make-story'), new_story_path, :style => "color: #f50;" %>
         </li>
         <% if current_user %>
             <li>

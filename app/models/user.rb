@@ -41,4 +41,43 @@ class User < ApplicationRecord
     @google_oauth2_client
   end
 
+  def feed
+    @feed_stories = []
+
+    # TRENDING
+    trendings = TrendingStory.get.map do |story|
+      result = {}
+      result[:trending] = true
+      result[:id] = story.id
+      result
+    end
+    @feed_stories.concat trendings
+
+    # MOST RECENT
+    most_recents = Story.order(created_at: :desc).limit(10).map do |story|
+      result = {}
+      result[:most_recent] = true
+      result[:id] = story.id
+      result
+    end
+    # Choose distinct story from the ones that already in feed_stories
+    most_recents.select! do |story|
+      result = @feed_stories.detect { |fs| fs[:id] == story[:id] }
+      result.nil?
+    end
+    # Add to feed_stories
+    @feed_stories.concat most_recents
+
+    # FROM FOLLOW
+    from_follows = []
+    @feed_stories.concat from_follows
+
+    # SHUFFLE THE RESULT
+    @feed_stories.shuffle.map do |st|
+      result = Story.find st[:id]
+      result.trending = st[:trending]
+      result.most_recent = st[:most_recent]
+      result
+    end
+  end
 end

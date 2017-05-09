@@ -1,7 +1,7 @@
 class Card < ApplicationRecord
   belongs_to :story
 
-  mount_uploader :photo, PhotoUploader
+  # mount_uploader :photo, PhotoUploader
 
   # Neu prev_id == 0 thi tuc la card nay la card dau tien trong story
   def prev

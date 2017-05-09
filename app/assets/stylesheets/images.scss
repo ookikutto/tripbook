@@ -73,6 +73,12 @@
   height: 90%;
   object-fit: contain;
 }
+
+.mySlides > .just-caption {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* Slideshow container */
 .slideshow-container {
   height: 80%;

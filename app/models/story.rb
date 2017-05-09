@@ -11,7 +11,11 @@ class Story < ApplicationRecord
   end
 
   def lastest_card
-    cards.order( created_at: :asc).last
+    cards.order( created_at: :desc).first
+  end
+
+  def oldest_card
+    timeline.first
   end
 
   def impressions_count

@@ -27,7 +27,7 @@
           <div class="numbertext"><%= index + 1 %> / <%= cards_count %></div>
           <%= image_tag card.photo, style: "width:100%" %>
           <% if card.caption.present? %>
-              <div class="text caption"><%= card.caption %></div>
+              <div class="text caption <%= "just-caption" if card.photo.empty? %>"><%= card.caption %></div>
           <% end %>
         </div>
     <% end %>

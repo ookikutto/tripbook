@@ -11,6 +11,16 @@ body {
   margin: 0;
 }
 
+.large-headline {
+  font-family: times, Times New Roman, times-roman, georgia, serif;
+  padding: 10px 0px 5px 0px;
+  font-size: 36px;
+  line-height: 36px;
+  letter-spacing: -2px;
+  font-weight: bold;
+  color: black;
+}
+
 .content {
   min-height: 100%;
 }
@@ -52,6 +62,7 @@ body {
       border-bottom: 3px solid;
       border-bottom: 3px solid;
       color: white;
+      margin-bottom: 10px;
     }
   }
 }
@@ -802,7 +813,7 @@ footer {
 }
 .caption {
   font-family: 'Rokkitt', serif;
-  font-size: 16px;
+  font-size: 20px !important;
 }
 .direct-upload {
 

@@ -2,7 +2,7 @@ class Story < ApplicationRecord
   belongs_to :place
   belongs_to :user
   has_many :impressions, as: :impressionable
-  has_many :cards
+  has_many :cards, dependent: :destroy
 
   attr_accessor :trending, :most_recent
 

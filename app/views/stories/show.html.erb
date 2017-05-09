@@ -25,7 +25,7 @@
     <% @story.timeline.each_with_index do |card, index| %>
         <div class="mySlides fade-animation card-container">
           <div class="numbertext"><%= index + 1 %> / <%= cards_count %></div>
-          <%= image_tag card.photo, style: "width:100%" %>
+          <%= image_tag card.photo, class: "#{'image-blank' if card.photo.empty?}" %>
           <% if card.caption.present? %>
               <div class="text caption <%= "just-caption" if card.photo.empty? %>"><%= card.caption %></div>
           <% end %>

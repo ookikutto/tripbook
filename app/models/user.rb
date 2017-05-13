@@ -5,6 +5,41 @@ class User < ApplicationRecord
 
   has_many :identities
 
+  has_many :stories
+
+  # FOLLOW
+  has_many :passive_relationships, class_name: 'Relationship',
+    dependent: :destroy, as: :followable
+  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :active_relationships, class_name: 'Relationship',
+    foreign_key: 'follower_id', dependent: :destroy
+  has_many :following_users, through: :active_relationships, source: :followable,
+    source_type: 'User'
+  has_many :following_places, through: :active_relationships, source: :followable,
+    source_type: 'Place'
+
+  def follow(something)
+    self.send("following_#{source_type something}s") << something
+  end
+
+  def unfollow(something)
+    self.send("following_#{source_type something}s").delete(something)
+  end
+
+  def follow?(something)
+    self.send("following_#{source_type something}s").include?(something)
+  end
+
+  def feeds_from_following
+    following_user_ids = "SELECT followable_id FROM relationships
+      WHERE follower_id = :user_id AND followable_type = :user_class_name"
+    following_place_ids = "SELECT followable_id FROM relationships
+      WHERE follower_id = :user_id AND followable_type = :place_class_name"
+    Story.where("(user_id IN (#{following_user_ids})) OR
+      (place_id IN (#{following_place_ids}))",
+      user_id: id, user_class_name: 'User', place_class_name: 'Place')
+  end
+
   def twitter
     identities.where( :provider => "twitter" ).first
   end
@@ -79,5 +114,11 @@ class User < ApplicationRecord
       result.most_recent = st[:most_recent]
       result
     end
+  end
+
+  private
+
+  def source_type something
+    something.class.name.demodulize.downcase
   end
 end

@@ -1,0 +1,173 @@
+<div class="container image-show-page" style="padding: 0">
+  <!-- start slideshow container -->
+  <div class="col-md-12 slideshow-container">
+    <!-- start featured -->
+    <div class="mySlides fade-animation"
+         style="position: absolute;
+             left: 0;
+             height: 100vh;
+             width: 100%;">
+      <div class="image-featured"
+           style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<%= @story.featured if @story.featured.present? %>);
+               width:100%">
+        <div class="headline-wrapper">
+          <div class="large-headline"><%= @story.title %></div>
+          <div class="small-headline"><%= @story.place.name %></div>
+        </div>
+      </div>
+
+    </div>
+    <!-- end featured -->
+
+    <!-- start cards -->
+    <% timeline = @story.timeline %>
+    <% cards_count = timeline.size %>
+    <% @story.timeline.each_with_index do |card, index| %>
+        <div class="mySlides fade-animation card-container">
+          <div class="numbertext"><%= index + 1 %> / <%= cards_count %></div>
+          <%= image_tag card.photo, class: "#{'image-blank' if card.photo.empty?}" %>
+          <% if card.caption.present? %>
+              <div class="text caption <%= "just-caption" if card.photo.empty? %>"><%= card.caption %></div>
+          <% end %>
+        </div>
+    <% end %>
+    <!-- end cards -->
+
+    <a class="prev slideshow-prev">&#10094;</a>
+    <a class="next slideshow-next">&#10095;</a>
+    <a class="toggle-info">
+      <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    </a>
+    <br>
+    <div style="text-align:center" style="display: none">
+      <% (cards_count + 1).times do |i| %>
+          <span class="dot slideshow-current" data-index="<%= i + 1 %>"></span>
+      <% end %>
+    </div>
+  </div>
+  <!-- end slideshow container -->
+
+  <!-- start comment container (right part) -->
+  <div class="hidden-md comment-container story-wrapper" style="display: none;">
+    <!-- start uploader info -->
+    <div class="uploader-info">
+      <a href="#uploader-profile" class="profile-pic">
+        <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+      </a>
+      <div class="left">
+        <a href="#uploader-profile" class="name"><%# truncate(current_user.email, length: 30) %></a>
+        <p class="date-upload" id="hover-content"> uploaded 7h ago</p>
+      </div>
+      <% if authorize_user?(@story, current_user) %>
+          <div class="right">
+            <div class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                  <%= link_to 'Edit my post', edit_story_path(@story) %>
+                </li>
+                <li><%= link_to 'Destroy', @story, method: :delete, data: {confirm: 'Are you sure?'} %></li>
+              </ul>
+            </div>
+          </div>
+      <% end %>
+    </div>
+    <!-- end uploader info -->
+
+    <!-- start comment wrapper -->
+    <div class="comment-wrapper fade-animation fade-out-animation">
+      <!-- start comment form -->
+      <div class="comment-form">
+        <div class="avatar">
+          <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+        </div>
+        <div class="comment-input">
+        </div>
+      </div>
+      <!-- end comment form -->
+
+      <!-- start comment show all -->
+      <div class="comment-show-all">
+        <div>
+        </div>
+      </div>
+      <!-- end comment show all -->
+    </div>
+    <!-- end comment wrapper -->
+  </div>
+  <!-- end comment container (right part) -->
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var slides = $(".mySlides");
+            var dots = $(".dot");
+
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            $.each(slides, function () {
+                $(this).hide();
+            });
+            $.each(dots, function () {
+                $(this).removeClass("active");
+            });
+            $(slides.get(slideIndex - 1)).show().fadeIn();
+            $(dots.get(slideIndex - 1)).addClass("active");
+        }
+
+        $(".slideshow-prev").click(function () {
+            plusSlides(-1);
+        });
+
+        $(".slideshow-next").click(function () {
+            plusSlides(1);
+        });
+
+        $(".slideshow-current").click(function () {
+            var navToSlide = $(this).data("index");
+            currentSlide(navToSlide);
+        });
+
+        $("#files").change(function () {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById("image").src = e.target.result;
+            };
+            reader.readAsDataURL(this.files[0]);
+            $(".no-image").hide();
+        })
+
+        $(".toggle-info").click(function () {
+            var commentContainer = $(".comment-container");
+            var slideshowContainer = $(".slideshow-container");
+
+            if (commentContainer.hasClass("col-md-4")) {
+                // hide comment, expand slideshow
+                commentContainer.removeClass("col-md-4").fadeOut().addClass("hidden-md");
+                slideshowContainer.removeClass("col-md-8").fadeIn().addClass("col-md-12");
+            } else if (commentContainer.hasClass("hidden-md")) {
+                commentContainer.removeClass("hidden-md").addClass("col-md-4").fadeIn();
+                slideshowContainer.removeClass("col-md-12").addClass("col-md-8");
+            }
+        });
+    });
+
+</script>

@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="col-md-12">
+    <%= link_to story_path(@story) do %>
+        <h2 style="display: inline-block;"><%= @story.title %></h2>
+    <% end %>
+  </div>
+  <div class="col-md-4 col-sm-3">
+    <%= render partial: 'shared/card_navigator', locals: { story: @story } %>
+  </div>
+  <div class="col-md-8 story-form-wrapper">
+    <%= render 'form', locals: { story: @story, card: @card } %>
+  </div>
+</div>

@@ -11,19 +11,13 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <% if current_user %>
-            <li class="active"><a href="#"><%= t 'header.home' %></a></li>
+            <li class="active">
+              <%= link_to root_path do %>
+                  <%= t 'header.home' %>
+              <% end %>
+            </li>
         <% end %>
         <li><a href="#"><%= t 'header.trending' %></a></li>
-        <li>
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t 'header.category' %>
-            <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#"><%= t 'header.mountain' %></a></li>
-            <li><a href="#"><%= t 'header.forest' %></a></li>
-            <li class="divider"></li>
-            <li><a href="#"><%= t 'header.all' %></a></li>
-          </ul>
-        </li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="input-group">
@@ -36,6 +30,9 @@
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to t('layouts.header.make-story'), new_story_path, :style => "color: #f50;" %>
+        </li>
         <% if current_user %>
             <li>
               <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= truncate current_user.email, length: 30 %>

@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.create email: '1@1.com', password: '111111'
+Place.create name: 'Somewhere in Vietnam'
+20.times do
+  Story.create title: 'Ramdon Title with some more random to make it longer', place: Place.find_by(name: 'Somewhere in Vietnam'), featured: 'http://lorempixel.com/640/480/city', user: User.first
+end

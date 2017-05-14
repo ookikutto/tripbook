@@ -85,10 +85,6 @@ class User < ApplicationRecord
 
   private
 
-  def source_type something
-    something.class.name.demodulize.downcase
-  end
-
   def from_following_story_ids
     following_user_ids = "SELECT followable_id FROM relationships
       WHERE follower_id = :user_id AND followable_type = :user_class_name"
@@ -98,5 +94,9 @@ class User < ApplicationRecord
       (place_id IN (#{following_place_ids}))",
       user_id: id, user_class_name: 'User', place_class_name: 'Place')
       .map(&:id)
+  end
+
+  def source_type something
+    something.class.name.demodulize.downcase
   end
 end

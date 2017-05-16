@@ -5,7 +5,7 @@ Recommendable.configure do |config|
   # Recommendable's connection to Redis.
   #
   # Default: localhost:6379/0
-  uri = ENV["REDISTOGO_URL"] || "redis://localhost:6379/"
+  uri = ENV["REDIS_URL"] || "redis://localhost:6379/"
   config.redis = Redis.new(url: uri)
 
   # A prefix for all keys Recommendable uses.

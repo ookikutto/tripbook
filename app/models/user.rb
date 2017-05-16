@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :identities
 
   has_many :stories
+  has_many :places, through: :stories
 
   # FOLLOW
   has_many :passive_relationships, class_name: 'Relationship',

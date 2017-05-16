@@ -1,2 +1,28 @@
-<strong><%= @user.email %></strong> |
-<%= render "shared/followables/info" %>
+<div class="row">
+  <div class="col-md-8">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="pill" href="#lastest">Lastest</a></li>
+      <li><a data-toggle="pill" href="#hotest">Hotest</a></li>
+      <li><a data-toggle="pill" href="#likes">Likes</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="lastest" class="tab-pane fade in active">
+        <h3>HOME</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div id="hotest" class="tab-pane fade">
+        <h3>Menu 1</h3>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+      <div id="likes" class="tab-pane fade">
+        <h3>Menu 2</h3>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <%= render "shared/followables/info" %>
+  </div>
+</div>

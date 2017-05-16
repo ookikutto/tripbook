@@ -1,6 +1,16 @@
 <% @target = @user || @place %>
-<span class="followers-count">
-  <strong>Followers:</strong>
-  <%= @target.followers.count %>
+<span class="stories-count">
+  Stories
+  <strong><%= @target.stories.count %></strong>
 </span>
+<span class="followers-count">
+  Followers:
+  <strong><%= @target.followers.count %></strong>
+</span>
+<% if @target.is_user? %>
+  <span class="following-count">
+    Following:
+    <strong><%= @target.following_count %></strong>
+  </span>
+<% end %>
 <%= render "shared/followables/follow_form" %>

@@ -13,7 +13,10 @@ class StoriesController < ApplicationController
   end
 
   def create
-    @place = Place.find_or_create_by name: place_params[:name]
+    @place = Place.find_by name: place_params[:name], place_id: place_params[:place_id]
+    if @place.nil?
+      @place = Place.create place_params
+    end
     @story = Story.new story_params
     @story.place = @place
     @story.user = current_user
@@ -52,7 +55,7 @@ class StoriesController < ApplicationController
   end
 
   def place_params
-    params.require(:place).permit(:name)
+    params.require(:place).permit(:name, :place_id, :lat, :lng)
   end
 
   def find_story

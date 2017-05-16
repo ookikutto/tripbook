@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+
+  recommends :stories
   # Remove the default :validatable and add :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :omniauthable

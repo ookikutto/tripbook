@@ -23,5 +23,10 @@ class TrendingStory < ApplicationRecord
       batch = TrendingStory.last ? TrendingStory.last.batch : 0
       TrendingStory.where(batch: batch).map { |st| Story.find st.story_id }
     end
+
+    def get_ids
+      batch = TrendingStory.last ? TrendingStory.last.batch : 0
+      TrendingStory.where(batch: batch).map(&:story_id)
+    end
   end
 end

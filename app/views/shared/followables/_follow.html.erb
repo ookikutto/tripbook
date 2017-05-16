@@ -1,0 +1,5 @@
+<%= form_for current_user.active_relationships.build, remote: true do |f| %>
+  <%= f.hidden_field :followable_id, value: @target.id %>
+  <%= f.hidden_field :followable_type, value: @target.class_name %>
+  <%= f.submit class: 'btn btn-info' %>
+<% end %>

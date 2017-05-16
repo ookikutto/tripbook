@@ -5,6 +5,31 @@ class User < ApplicationRecord
 
   has_many :identities
 
+  has_many :stories
+
+  # FOLLOW
+  has_many :passive_relationships, class_name: 'Relationship',
+    dependent: :destroy, as: :followable
+  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :active_relationships, class_name: 'Relationship',
+    foreign_key: 'follower_id', dependent: :destroy
+  has_many :following_users, through: :active_relationships, source: :followable,
+    source_type: 'User'
+  has_many :following_places, through: :active_relationships, source: :followable,
+    source_type: 'Place'
+
+  def follow(something)
+    self.send("following_#{source_type something}s") << something
+  end
+
+  def unfollow(something)
+    self.send("following_#{source_type something}s").delete(something)
+  end
+
+  def follow?(something)
+    self.send("following_#{source_type something}s").include?(something)
+  end
+
   def twitter
     identities.where( :provider => "twitter" ).first
   end
@@ -41,43 +66,37 @@ class User < ApplicationRecord
     @google_oauth2_client
   end
 
-  def feed
+  def feeds
     @feed_stories = []
 
     # TRENDING
-    trendings = TrendingStory.get.map do |story|
-      result = {}
-      result[:trending] = true
-      result[:id] = story.id
-      result
-    end
-    @feed_stories.concat trendings
+    trending_story_ids = TrendingStory.get_ids
+    @feed_stories.concat trending_story_ids
 
     # MOST RECENT
-    most_recents = Story.order(created_at: :desc).limit(10).map do |story|
-      result = {}
-      result[:most_recent] = true
-      result[:id] = story.id
-      result
-    end
-    # Choose distinct story from the ones that already in feed_stories
-    most_recents.select! do |story|
-      result = @feed_stories.detect { |fs| fs[:id] == story[:id] }
-      result.nil?
-    end
-    # Add to feed_stories
-    @feed_stories.concat most_recents
+    most_recent_story_ids = Story.order(created_at: :desc).limit(10).map(&:id)
+    @feed_stories.concat most_recent_story_ids
 
     # FROM FOLLOW
-    from_follows = []
-    @feed_stories.concat from_follows
+    @feed_stories.concat from_following_story_ids
 
-    # SHUFFLE THE RESULT
-    @feed_stories.shuffle.map do |st|
-      result = Story.find st[:id]
-      result.trending = st[:trending]
-      result.most_recent = st[:most_recent]
-      result
-    end
+    Story.where("id IN (?)", @feed_stories).order(created_at: :desc)
+  end
+
+  private
+
+  def from_following_story_ids
+    following_user_ids = "SELECT followable_id FROM relationships
+      WHERE follower_id = :user_id AND followable_type = :user_class_name"
+    following_place_ids = "SELECT followable_id FROM relationships
+      WHERE follower_id = :user_id AND followable_type = :place_class_name"
+    Story.where("(user_id IN (#{following_user_ids})) OR
+      (place_id IN (#{following_place_ids}))",
+      user_id: id, user_class_name: 'User', place_class_name: 'Place')
+      .map(&:id)
+  end
+
+  def source_type something
+    something.class.name.demodulize.downcase
   end
 end

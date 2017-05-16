@@ -77,6 +77,14 @@ ActiveRecord::Schema.define(version: 20170421083948) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followable_id"
+    t.string   "followable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "stories", force: :cascade do |t|
     t.integer  "place_id"
     t.string   "title"

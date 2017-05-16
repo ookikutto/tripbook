@@ -14,12 +14,3 @@
   </span>
 <% end %>
 <%= render "shared/followables/follow_form" %>
-
-<% if @target.is_user? %>
-  <h4>Places that <%= @user.name %> has visited:</h4>
-  <ul>
-    <% @user.places.each do |place| %>
-      <li><%= place.name %></li>
-    <% end %>
-  </ul>
-<% end %>

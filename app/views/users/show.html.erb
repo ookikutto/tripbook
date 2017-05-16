@@ -26,6 +26,12 @@
   </div>
 
   <div class="col-md-4">
-    <%= render "shared/followables/info" %>
+    <%= render "shared/followables/stats" %>
+    <h4>Places that <%= @user.name %> has visited:</h4>
+    <ul>
+      <% @user.places.each do |place| %>
+        <li><%= place.name %></li>
+      <% end %>
+    </ul>
   </div>
 </div>

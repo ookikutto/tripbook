@@ -3,15 +3,16 @@ class Story < ApplicationRecord
   belongs_to :user
   has_many :impressions, as: :impressionable
   has_many :cards, dependent: :destroy
+  has_many :story_comments, -> { order "created_at DESC"}
 
   attr_accessor :trending, :most_recent
 
   def timeline
-    cards.order( created_at: :asc)
+    cards.order(created_at: :asc)
   end
 
   def lastest_card
-    cards.order( created_at: :desc).first
+    cards.order(created_at: :desc).first
   end
 
   def oldest_card

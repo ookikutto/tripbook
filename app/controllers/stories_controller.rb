@@ -6,6 +6,7 @@ class StoriesController < ApplicationController
   before_action :log_impression, only: :show
 
   def show
+    @story_comment = StoryComment.new
   end
 
   def new

@@ -211,6 +211,7 @@
   transform: translateY(-50%);
   background: white;
   padding: 15px;
+  overflow: auto;
 }
 .comment-container .comment-wrapper {
   padding-top: 5px;
@@ -227,12 +228,13 @@
 .comment-form .comment-input {
   display: inline-block;
   vertical-align: top;
-  margin-top: 14px;
-  width: calc(100% - 60px);
-  margin-left: 3px;
+  width: 100%;
+  margin: 0;
+  padding: 2px 0;
 }
 .comment-form .comment-input input.form-control {
-  height: 25px;
+  width: 95%;
+  margin: 0 auto;
 }
 .comment-show-all {
   margin-top:10px;
@@ -241,6 +243,7 @@
   border-bottom: 1px solid #fff;
   box-shadow: 0 1px 0 0 #f2f2f2;
   padding-bottom: 5px;
+  color: #999;
 }
 .comment-show-all .comment-item {
   margin-left: 20px;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170513061540) do
+ActiveRecord::Schema.define(version: 20170516104934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,9 @@ ActiveRecord::Schema.define(version: 20170513061540) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "lat"
+    t.string   "lng"
+    t.string   "place_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -93,6 +96,14 @@ ActiveRecord::Schema.define(version: 20170513061540) do
     t.string   "featured"
     t.integer  "place_id"
     t.index ["user_id"], name: "index_stories_on_user_id", using: :btree
+  end
+
+  create_table "story_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.string   "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "trending_places", force: :cascade do |t|

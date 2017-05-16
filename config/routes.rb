@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :story_comments
   # resources :image_comments
   # resources :images
   devise_for :users, class_name: 'FormUser',

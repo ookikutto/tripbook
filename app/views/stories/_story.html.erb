@@ -1,10 +1,13 @@
 <div class="story-wrapper">
   <div class="uploader-info">
-    <a href="#uploader-profile" class="profile-pic">
-      <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+    <%= link_to user_path(id: story.user_id), :class => "profile-pic" do %>
+        <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+    <% end %>
     </a>
     <div class="left">
-      <a href="#uploader-profile" class="name"><%= truncate(story.user.email, length: 30) %></a>
+      <%= link_to user_path(id: story.user_id), :class => "name" do %>
+        <%= truncate(story.user.email, length: 30) %>
+      <% end %>
     </div>
     <div class="right" id="parent">
       <span class="date-upload" id="hover-content"><%= story.created_at %></span>
@@ -22,7 +25,7 @@
   <%= link_to story_path(story) do %>
       <p class="read-more caption">
         <%= story.oldest_card.caption if story.oldest_card.present? &&
-        story.oldest_card.caption.present? %>...
+            story.oldest_card.caption.present? %>...
       </p>
   <% end %>
 

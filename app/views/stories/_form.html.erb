@@ -47,6 +47,9 @@
         <input type="text" name="place[name]" placeholder="<%= t('stories.form.place_name') %>"
                id="place" class="form-control"
                value="<%= @story.place.name if @story.place.present? %>">
+          <input type="hidden" name="place[lat]" id="place-lat" value="<%= @story.place.lat if @story.place.present? %>">
+          <input type="hidden" name="place[lng]" id="place-lng" value="<%= @story.place.lng if @story.place.present? %>">
+          <input type="hidden" name="place[place_id]" id="place-id" value="<%= @story.place.place_id if @story.place.present?%>">
       </div>
       <%= f.hidden_field :featured %>
       <div class="form-group">
@@ -55,9 +58,16 @@
     </div>
 <% end %>
 
+
 <script>
     $(document).on('turbolinks:load', function () {
         $(function () {
+            $('input#place').geocomplete().bind("geocode:result", function(event, result){
+              $("input#place-lat").val(result.geometry.location.lat());
+              $("input#place-lng").val(result.geometry.location.lng());
+              $("input#place-id").val(result.place_id)
+            });
+
             $('.direct-upload').each(function () {
                 var form = $(this)
                 $(this).fileupload({

@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20170514181603) do
   end
 
   create_table "stories", force: :cascade do |t|
+    t.integer  "place_id"
     t.string   "title"
     t.integer  "user_id"
     t.datetime "created_at", null: false
@@ -134,5 +135,6 @@ ActiveRecord::Schema.define(version: 20170514181603) do
 
   add_foreign_key "cards", "stories"
   add_foreign_key "identities", "users"
+  add_foreign_key "stories", "places"
   add_foreign_key "stories", "users"
 end

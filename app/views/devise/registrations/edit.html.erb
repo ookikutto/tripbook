@@ -1,43 +1,48 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <div class="row">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-edit-profile form-signin mg-btm', method: :put }) do |f| %>
+    <h3 class="heading-desc">
+      <%= t 'user.edit-profile' %></h3>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+      <%= devise_error_messages! %>
+      <div class="main">
+        <div class="field">
+          <%= f.label t('user.name') %><br />
+          <%= f.text_field :name, class: 'form-control', autofocus: true %>
+        </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<!--         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %> -->
+
+        <div class="new-password">
+          <div class="field">
+            <%= f.label t('user.new-password') %> <div class="sub-info">- <%= t('common.option') %></div><br />
+            <%= f.password_field :password, class: 'form-control', autocomplete: "off" %>
+            <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %> characters minimum</em>
+            <% end %>
+          </div>
+
+          <div class="field">
+            <%= f.label t('user.new-password-confirmation') %><br />
+            <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= f.label t('user.current-password') %><br />
+          <%= f.password_field :current_password, class: 'form-control', autocomplete: "off" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit t('user.update'), class: 'btn btn-large btn-primary' %>
+          <form action="/">
+            <button class="btn btn-large btn-safe"><%= t('common.cancel') %></button>
+          </form>
+        </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>

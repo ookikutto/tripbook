@@ -99,4 +99,14 @@ jp:
         one: 1分以下
         other: '%{count}分以下'
       x_days: '%{count}日前'
+  user:
+    edit-profile: プロフィール編集
+    new-password: 新しいパスワード
+    new-password-confirmation: 新しいパスワード確認
+    current-password: 現在のパスワード
+    update: アップデート
+    name: 名前
 
+  common:
+    option: オプション
+    cancel: キャンセル

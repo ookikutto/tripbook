@@ -10,6 +10,7 @@ class PagesController < ApplicationController
 
   def home
     @feeds = current_user.feeds
+    raise 'asdfljaslkdfj'
   end
 
   def about

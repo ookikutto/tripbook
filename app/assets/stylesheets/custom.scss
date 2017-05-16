@@ -218,7 +218,7 @@ nav .sign-up-btn:hover {
   background: white;
   padding: 0;
 }
-.container.landing-page {
+
   .hero-image {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://duonglamtravel.com/wp-content/uploads/2016/03/Duong-Lam-Travel-Hanoi-Cycling-Around-1.jpg);
     background-position: center;
@@ -333,118 +333,118 @@ nav .sign-up-btn:hover {
     }
   }
 
-  .trending-for-guest {
+.trending-for-guest {
+  margin-bottom: 30px;
+  .story-item {
     margin-bottom: 30px;
-    .story-item {
-      margin-bottom: 30px;
-    }
+  }
 
-    .story-wrapper {
-      height: 320px;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      border-radius: 5px;
-      box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.25);
-      transition: all 0.3s ease;
-      padding: 0 15px;
-      position: relative;
+  .story-wrapper {
+    height: 320px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+    box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.25);
+    transition: all 0.3s ease;
+    padding: 0 15px;
+    position: relative;
 
-      .uploader-area {
-        z-index: 2;
-        position: absolute;
-        top: 0;
-        display: block;
-        width: calc(100% - 30px);
+    .uploader-area {
+      z-index: 2;
+      position: absolute;
+      top: 0;
+      display: block;
+      width: calc(100% - 30px);
 
-        .uploader-wrapper {
-          border-left: 3px solid orange;
-          padding-left: 10px;
-          margin: 20px 0px 10px;
-          height: 30px;
-        }
-
-        .profile-pic {
-          height: 47px;
-          width: 47px;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: cover;
-          display: inline-block;
-          margin-top: -10px;
-        }
-
-        .name {
-          display: inline-block;
-          line-height: 47px;
-          vertical-align: top;
-          margin-top: -10px;
-          margin-left: 10px;
-          color: white;
-          text-shadow: 1px 1px 4px black;
-        }
+      .uploader-wrapper {
+        border-left: 3px solid orange;
+        padding-left: 10px;
+        margin: 20px 0px 10px;
+        height: 30px;
       }
 
-      .story-detail-link {
-        display: block;
-        height: 320px;
-        z-index: 1;
-        width: 100%;
-        left: 0;
+      .profile-pic {
+        height: 47px;
+        width: 47px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        display: inline-block;
+        margin-top: -10px;
       }
 
-      .story-title {
-        position: absolute;
-        bottom: 30px;
-        font-size: 22px;
-        color: #fff;
-        line-height: 28px;
+      .name {
+        display: inline-block;
+        line-height: 47px;
+        vertical-align: top;
+        margin-top: -10px;
+        margin-left: 10px;
+        color: white;
         text-shadow: 1px 1px 4px black;
       }
+    }
 
-      .story-stat {
-        position: absolute;
-        bottom: 5px;
-        display: block;
-        width: calc(100% - 30px);
-        text-align: right;
-        font-size: 15px;
+    .story-detail-link {
+      display: block;
+      height: 320px;
+      z-index: 1;
+      width: 100%;
+      left: 0;
+    }
 
-        .like-count {
-          color: #f50;
-          text-shadow: 1px 1px 5px black;
-          margin-right: 10px;
-        }
+    .story-title {
+      position: absolute;
+      bottom: 30px;
+      font-size: 22px;
+      color: #fff;
+      line-height: 28px;
+      text-shadow: 1px 1px 4px black;
+    }
 
-        .comment-count {
-          color: orange;
-          text-shadow: 1px 1px 5px black;
-        }
+    .story-stat {
+      position: absolute;
+      bottom: 5px;
+      display: block;
+      width: calc(100% - 30px);
+      text-align: right;
+      font-size: 15px;
+
+      .like-count {
+        color: #f50;
+        text-shadow: 1px 1px 5px black;
+        margin-right: 10px;
       }
 
-      .story-stat > div {
-        display: inline-block;
+      .comment-count {
+        color: orange;
+        text-shadow: 1px 1px 5px black;
       }
     }
 
-    .story-wrapper:hover {
-      box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
-    }
-
-    .title {
-      font-size: 24px;
-      text-align: center;
-      margin-bottom: 30px;
-      color: #333;
-    }
-
-    .trending-btn {
-      background-color: #f50;
-      border-color: #f50;
-      color: white;
+    .story-stat > div {
+      display: inline-block;
     }
   }
+
+  .story-wrapper:hover {
+    box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+  }
+
+  .title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+  }
+
+  .trending-btn {
+    background-color: #f50;
+    border-color: #f50;
+    color: white;
+  }
 }
+
 
 section {
   margin-bottom: 30px;
@@ -465,188 +465,190 @@ section {
 }
 
 // home page
-.container.home-page {
-  .story-wrapper {
-    box-shadow: 0 1px 4px rgba(0,0,0,.04);
-    border: 1px solid rgba(0,0,0,.09);
-    border-radius: 3px;
-    padding: 20px;
-    margin-bottom: 30px;
-    background: #fff;
 
-    .uploader-info {
-      .profile-pic {
-        display: inline-block;
-      }
-      .profile-pic-img {
-        background-position: center;
-        height: 47px;
-        width: 47px;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
+.story-wrapper {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+  border: 1px solid rgba(0, 0, 0, .09);
+  border-radius: 3px;
+  padding: 20px;
+  margin-bottom: 30px;
+  background: #fff;
 
-      .left {
-        display: inline-block;
-        vertical-align: top;
-        margin-left: 5px;
-
-        .name {
-          color: #262626;
-          font-weight: bold;
-          font-size: 15px;
-        }
-
-        .date-upload {
-          color: rgba(0,0,0,.6);
-        }
-      }
-
-      .right {
-        vertical-align: top;
-        float: right;
-        color: #999;
-
-        .dropdown-toggle {
-          display: inline-block;
-          width: 30px;
-          height: 30px;
-          padding: 5px 0 0 5px;
-          color: gray;
-
-          span.caret {
-            border-width: 5px;
-          }
-        }
-      }
+  .uploader-info {
+    .profile-pic {
+      display: inline-block;
     }
-
-    .story-cover {
-      width: 100%;
-      height: 300px;
-      background-size: cover;
+    .profile-pic-img {
+      background-position: center;
+      height: 47px;
+      width: 47px;
       background-repeat: no-repeat;
-      background-position: 50% 50%;
+      background-size: cover;
     }
 
-    .story-title {
-      font-family: times, Times New Roman, times-roman, georgia, serif;
-      margin: 0;
-      padding: 0px 0px 6px 0px;
-      font-size: 30px;
-      line-height: 44px;
-      letter-spacing: -2px;
-      font-weight: bold;
-      color: #666;
-    }
+    .left {
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 5px;
 
-    .read-more {
-      color: rgba(0,0,0,.44);
-      cursor: pointer;
-    }
-
-    .story-action {
-      display: block;
-      height: 30px;
-
-      .like-count {
-        float: left;
-        border: 1px solid #e5e5e5;
-        border-radius: 3px;
-        padding: 2px 10px;
-        height: 25px;
-        line-height: 16px;
-        cursor: pointer;
-        background-color: white;
-
-        .like-btn {
-          color: #f50;
-        }
-
-        .like-btn:hover {
-
-        }
-
-        .like-btn.liked {
-          color: #f50;
-        }
-
-        .like-text {
-          color: rgba(0,0,0,.44);
-        }
+      .name {
+        color: #262626;
+        font-weight: bold;
+        font-size: 15px;
       }
 
-      .trending {
-        float: left;
-        padding: 2px 11px;
-        height: 22px;
-        line-height: 16px;
-        margin-left: 10px;
-        border-radius: 20px;
-        color: white;
-        background: #999;
-        border: 1px solid #999;
-
-        .glyphicon-fire {
-          color: #fff;
-        }
-
-        .trending-text {
-          color: #fff;
-        }
+      .date-upload {
+        color: rgba(0, 0, 0, .6);
       }
+    }
 
-      .comment-count {
-        float: right;
-        color: #999;
-        font-size: 13px;
-        .glyphicon-comment {
-          color: rgba(0,0,0,.44);
-        }
+    .right {
+      vertical-align: top;
+      float: right;
+      color: #999;
 
-        .comment-text {
-          color: rgba(0,0,0,.44);
+      .dropdown-toggle {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        padding: 5px 0 0 5px;
+        color: gray;
+
+        span.caret {
+          border-width: 5px;
         }
       }
     }
   }
 
-  .story-wrapper > a {
+  .story-cover {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  .story-title {
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+    margin: 0;
+    padding: 0px 0px 6px 0px;
+    font-size: 30px;
+    line-height: 44px;
+    letter-spacing: -2px;
+    font-weight: bold;
+    color: #666;
+  }
+
+  .read-more {
+    color: rgba(0, 0, 0, .44);
+    cursor: pointer;
+  }
+
+  .story-action {
     display: block;
-    margin: 10px 0 20px 0;
-  }
+    height: 30px;
 
-  .place-item {
-    //height: 160px;
+    .like-count {
+      float: left;
+      border: 1px solid #e5e5e5;
+      border-radius: 3px;
+      padding: 2px 10px;
+      height: 25px;
+      line-height: 16px;
+      cursor: pointer;
+      background-color: white;
 
-    .place-img {
-      height: 70px;
-      margin-bottom: 30px;
+      .like-btn {
+        color: #f50;
+      }
+
+      .like-btn:hover {
+
+      }
+
+      .like-btn.liked {
+        color: #f50;
+      }
+
+      .like-text {
+        color: rgba(0, 0, 0, .44);
+      }
     }
 
-    .place-name {
-      font-family: times, Times New Roman, times-roman, georgia, serif;
-      margin: 0;
-      font-size: 20px;
-      font-weight: bold;
+    .trending {
+      float: left;
+      padding: 2px 11px;
+      height: 22px;
+      line-height: 16px;
+      margin-left: 10px;
+      border-radius: 20px;
       color: white;
+      background: #999;
+      border: 1px solid #999;
+
+      .glyphicon-fire {
+        color: #fff;
+      }
+
+      .trending-text {
+        color: #fff;
+      }
+    }
+
+    .comment-count {
+      float: right;
+      color: #999;
+      font-size: 13px;
+      .glyphicon-comment {
+        color: rgba(0, 0, 0, .44);
+      }
+
+      .comment-text {
+        color: rgba(0, 0, 0, .44);
+      }
     }
   }
+}
 
-  .right-area {
-    box-shadow: 0 1px 4px rgba(0,0,0,.04);
-    border: 1px solid rgba(0,0,0,.09);
-    border-radius: 3px;
+.story-wrapper > a {
+  display: block;
+  margin: 10px 0 20px 0;
+}
+
+.place-item {
+  //height: 160px;
+
+  .place-img {
+    height: 70px;
     margin-bottom: 30px;
-    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    > h2 {
-      margin-bottom: 30px;
-      font-size: 30px;
-      line-height: 44px;
-      font-weight: bold;
-      color: #666;
-    }
+  .place-name {
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+    margin: 0;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+  }
+}
+
+.right-area {
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.09);
+  border-radius: 3px;
+  margin-bottom: 30px;
+  background: #fff;
+
+  > h2 {
+    margin-bottom: 30px;
+    font-size: 30px;
+    line-height: 44px;
+    font-weight: bold;
+    color: #666;
   }
 }
 
@@ -1043,4 +1045,71 @@ a.button {
 
     text-decoration: none;
     color: initial;
+}
+
+// user page
+.user-page-tabs .nav.nav-tabs {
+  margin-bottom: 10px;
+
+  li {
+    margin-right: 5px;
+  }
+
+  li.active > a {
+    background-color: transparent;
+    border: none;
+    border-bottom: 4px solid #f50;
+    padding: 10px 6px;
+    color: #333;
+  }
+
+  li > a {
+    border: none;
+    background-color: transparent;
+    color: #999;
+    padding: 10px 6px;
+  }
+
+  li > a:hover {
+    color: #333;
+  }
+
+}
+
+.user-page-stats {
+  padding: 15px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 3px;
+  margin-bottom: 30px;
+  background: #fff;
+
+  .user-name {
+    font-size: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .stats-table {
+    width: 100%;
+    text-align: center;
+    margin: 20px auto 10px auto;
+  }
+
+  .follow-form {
+    margin-bottom: 15px;
+
+    .btn-follow {
+      background-color: #f50;
+      border-color: #f50;
+      color: white;
+      padding: 3px 15px;
+    }
+
+    .btn-unfollow {
+      padding: 3px 15px;
+    }
+  }
+
 }

@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-md-8">
+<div class="container">
+  <div class="col-md-8 user-page-tabs">
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="pill" href="#lastest">Lastest</a></li>
       <li><a data-toggle="pill" href="#hotest">Hotest</a></li>
@@ -9,29 +9,34 @@
     <div class="tab-content">
       <div id="lastest" class="tab-pane fade in active">
         <% @lastest.each do |story| %>
-          <%= render partial: "stories/story", locals: {story: story} %>
+            <%= render partial: "stories/story", locals: {story: story} %>
         <% end %>
       </div>
       <div id="hotest" class="tab-pane fade">
         <% @hostest.each do |story| %>
-          <%= render partial: "stories/story", locals: {story: story} %>
+            <%= render partial: "stories/story", locals: {story: story} %>
         <% end %>
       </div>
       <div id="likes" class="tab-pane fade">
         <%# @likes.each do |story| %>
-          <%# render "stories/story", locals: {story: story} %>
+        <%# render "stories/story", locals: {story: story} %>
         <%# end %>
       </div>
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4 user-page-stats">
+    <p class="user-name"><%= current_user.email %></p>
     <%= render "shared/followables/stats" %>
     <h4>Places that <%= @user.name %> has visited:</h4>
-    <ul>
+    <div class="user-places-wrapper">
       <% @user.places.each do |place| %>
-        <li><%= place.name %></li>
+          <div class="col-xs-6 place-item">
+            <div class="make-color-wrapper place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
+              <p class="place-name"><%= place.name %></p>
+            </div>
+          </div>
       <% end %>
-    </ul>
+    </div>
   </div>
 </div>

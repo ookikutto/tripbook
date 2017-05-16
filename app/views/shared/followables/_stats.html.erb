@@ -1,16 +1,31 @@
 <% @target = @user || @place %>
-<span class="stories-count">
-  Stories
-  <strong><%= @target.stories.count %></strong>
-</span>
-<span class="followers-count">
-  Followers:
-  <strong><%= @target.followers.count %></strong>
-</span>
-<% if @target.is_user? %>
-  <span class="following-count">
-    Following:
-    <strong><%= @target.following_count %></strong>
-  </span>
-<% end %>
+
+<table class="stats-table">
+  <tr>
+    <td>
+      Stories
+    </td>
+    <td>
+      Followers
+    </td>
+    <% if @target.is_user? %>
+        <td>
+          Following
+        </td>
+    <% end %>
+  </tr>
+  <tr>
+    <td class="stories-count">
+      <strong><%= @target.stories.count %></strong>
+    </td>
+    <td class="followers-count">
+      <strong><%= @target.followers.count %></strong>
+    </td>
+    <% if @target.is_user? %>
+        <td class="following-count">
+          <strong><%= @target.following_count %></strong>
+        </td>
+    <% end %>
+  </tr>
+</table>
 <%= render "shared/followables/follow_form" %>

@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :identities
 
   has_many :stories
+  has_many :places, through: :stories
 
   # FOLLOW
   has_many :passive_relationships, class_name: 'Relationship',
@@ -17,6 +18,11 @@ class User < ApplicationRecord
     source_type: 'User'
   has_many :following_places, through: :active_relationships, source: :followable,
     source_type: 'Place'
+
+  def following_count
+    following = self.following_users.count
+    following += self.following_places.count
+  end
 
   def follow(something)
     self.send("following_#{source_type something}s") << something

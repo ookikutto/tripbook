@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require jquery.geocomplete.min
 //= require jquery-fileupload/vendor/jquery.ui.widget
 //= require jquery-fileupload/jquery.fileupload
 //= require jquery-fileupload/jquery.iframe-transport

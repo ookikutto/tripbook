@@ -112,6 +112,14 @@ class User < ApplicationRecord
     # FROM FOLLOW
     @feed_stories.concat from_following_story_ids
 
+    @feed_stories.uniq! do |s|
+      if s.is_a? Integer
+        s
+      else
+        s[:id]
+      end
+    end
+
     results = @feed_stories.map do |story_or_id|
       if story_or_id.is_a? Integer
         Story.find_by id: story_or_id
@@ -122,7 +130,8 @@ class User < ApplicationRecord
       end
     end
 
-    results.order(created_at: :desc)
+    results = results.sort_by {|story| story.created_at}
+    results.reverse
 
     # EAGER LOADING
     # Story.where("id IN (?)", @feed_stories).order(created_at: :desc)

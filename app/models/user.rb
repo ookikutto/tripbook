@@ -125,10 +125,15 @@ class User < ApplicationRecord
         Story.find_by id: story_or_id
       else
         result = Story.find_by id: story_or_id[:id]
-        result.trending = story_or_id[:trending]
-        result
+        if result.nil?
+          nil
+        else
+          result.trending = story_or_id[:trending]
+          result
+        end
       end
     end
+    results.compact!
 
     results = results.sort_by {|story| story.created_at}
     results.reverse

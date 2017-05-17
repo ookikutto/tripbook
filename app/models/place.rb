@@ -5,6 +5,6 @@ class Place < ApplicationRecord
   has_many :stories
 
   def thumbnail
-    self.stories.sort_by{|s| s.unique_impression_count}[0].featured
+    self.stories.sort_by{|s| s.unique_impression_count}[0].featured if !self.stories.empty?
   end
 end

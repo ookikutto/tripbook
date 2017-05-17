@@ -40,6 +40,7 @@ class StoriesController < ApplicationController
 
   def destroy
     @story.destroy
+    TrendingStory.fetch_to_db
     redirect_to home_path
   end
 

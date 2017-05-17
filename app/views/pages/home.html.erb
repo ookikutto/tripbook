@@ -7,10 +7,12 @@
     </div>
 
     <div class="col-md-4 right-area">
-      <h2 class="text-center">場所</h2>
+      <h2 class="text-center">トップ場所</h2>
       <div class="row">
         <% Place.top(6).each do |place| %>
-          <%= render partial: "places/place_thumbnail", locals: {place: place} %>
+          <% if place.present? && place.valid? %>
+            <%= render partial: "places/place_thumbnail", locals: {place: place} %>
+          <% end %>
         <% end %>
       </div>
     </div>

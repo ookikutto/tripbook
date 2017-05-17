@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  recommends :stories, :places
+  recommends :stories, :places, :users
   # Remove the default :validatable and add :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :omniauthable
@@ -36,6 +36,14 @@ class User < ApplicationRecord
 
   def follow?(something)
     self.send("following_#{source_type something}s").include?(something)
+  end
+
+  def like(something)
+    self.bookmark something
+  end
+
+  def unlike(something)
+    self.unbookmark something
   end
 
   def twitter

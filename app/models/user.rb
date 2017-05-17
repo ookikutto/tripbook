@@ -97,7 +97,12 @@ class User < ApplicationRecord
     @feed_stories = []
 
     # TRENDING
-    trending_story_ids = TrendingStory.get_ids
+    trending_story_ids = TrendingStory.get_ids.map do |id|
+      result = {}
+      result[:id] = id
+      result[:trending] = true
+      result
+    end
     @feed_stories.concat trending_story_ids
 
     # MOST RECENT
@@ -107,7 +112,20 @@ class User < ApplicationRecord
     # FROM FOLLOW
     @feed_stories.concat from_following_story_ids
 
-    Story.where("id IN (?)", @feed_stories).order(created_at: :desc)
+    results = @feed_stories.map do |story_or_id|
+      if story_or_id.is_a? Integer
+        Story.find_by id: story_or_id
+      else
+        result = Story.find_by id: story_or_id[:id]
+        result.trending = story_or_id[:trending]
+        result
+      end
+    end
+
+    results.order(created_at: :desc)
+
+    # EAGER LOADING
+    # Story.where("id IN (?)", @feed_stories).order(created_at: :desc)
   end
 
   private

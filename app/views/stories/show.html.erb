@@ -30,6 +30,7 @@
                 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                 <span class="comment-text"> <%= @story.story_comments.count %> <%# t('home.response') %></span>
               </div>
+              <%= render partial: "shared/views/views_count", locals: {story: @story} %>
             </div>
           </div>
           </div>

@@ -36,7 +36,7 @@ body {
 
   .story-action {
     height: auto;
-    
+
   }
 
   .headline-wrapper {
@@ -425,6 +425,10 @@ nav .sign-up-btn:hover {
         color: orange;
         text-shadow: 1px 1px 5px black;
       }
+      .views-count {
+        color: #fff;
+        text-shadow: 1px 1px 5px black;
+      }
     }
 
     .story-stat > div {
@@ -610,6 +614,15 @@ section {
       }
 
       .comment-text {
+        color: rgba(0, 0, 0, .44);
+      }
+    }
+
+    .views-count {
+      float: right;
+      color: #999;
+      font-size: 13px;
+      .glyphicon-eye-open {
         color: rgba(0, 0, 0, .44);
       }
     }

@@ -30,19 +30,13 @@
   <% end %>
 
   <div class="story-action">
-    <div class="like-count">
-      <span class="glyphicon glyphicon-heart-empty like-btn" aria-hidden="true"></span>
-      <span class="like-text"> 2037 <%# t('home.like') %></span>
-    </div>
+    <%= render partial: "shared/loves/loves_count", locals: {story: story} %>
     <% if story.trending %>
         <div class="trending">
           <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
           <span class="trending-text"> <%= t('home.trending') %></span>
         </div>
     <% end %>
-    <div class="comment-count">
-      <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-      <span class="comment-text"> 31 <%# t('home.response') %></span>
-    </div>
+    <%= render partial: "shared/views/views_count", locals: {story: story} %>
   </div>
 </div>

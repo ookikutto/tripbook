@@ -1,15 +1,3 @@
-<style>
-  #hover-content {
-    display: none;
-  }
-
-  #parent:hover #hover-content {
-    display: inline;
-  }
-
-</style>
-
-
 <div class="container home-page">
   <div class="row ">
     <div class="col-md-8 col-sm-12 ">
@@ -21,36 +9,9 @@
     <div class="col-md-4 right-area">
       <h2 class="text-center">場所</h2>
       <div class="row">
-        <div class="col-sm-4 place-item">
-          <div class="make-color-wrapper place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
-            <p class="place-name">New York</p>
-          </div>
-        </div>
-        <div class="col-sm-4 place-item">
-          <div class="make-color-wrapper place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
-            <p class="place-name">京都</p>
-          </div>
-        </div>
-        <div class="col-sm-4 place-item">
-          <div class="make-color-wrapper place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
-            <p class="place-name">京都</p>
-          </div>
-        </div>
-        <div class="col-sm-4 place-item">
-          <div class="make-color-wrapper  place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
-            <p class="place-name">京都</p>
-          </div>
-        </div>
-        <div class="col-sm-4 place-item">
-          <div class="make-color-wrapper  place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
-            <p class="place-name">京都</p>
-          </div>
-        </div>
-        <div class="col-sm-4 place-item">
-          <div class="make-color-wrapper  place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
-            <p class="place-name">京都</p>
-          </div>
-        </div>
+        <% Place.top(6).each do |place| %>
+          <%= render partial: "places/place_thumbnail", locals: {place: place} %>
+        <% end %>
       </div>
     </div>
   </div>

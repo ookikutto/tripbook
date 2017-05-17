@@ -1128,3 +1128,11 @@ a.button {
   }
 
 }
+
+#hover-content {
+  display: none;
+}
+
+#parent:hover #hover-content {
+  display: inline;
+}

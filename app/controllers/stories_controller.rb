@@ -72,6 +72,7 @@ class StoriesController < ApplicationController
       @story.impressions.create(ip_address: request.remote_ip, user_id: current_user.id)
       # User also like that story for the recommendation (based on what user's see)
       current_user.like @story
+      current_user.like @story.place
     else
       @story.impressions.create(ip_address: request.remote_ip)
     end

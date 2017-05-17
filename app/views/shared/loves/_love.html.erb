@@ -1,0 +1,4 @@
+<%= form_for current_user.story_loves.build, remote: true, class: 'likes-count' do |f| %>
+    <%= f.hidden_field :story_id, value: @story.id %>
+    <button type="submit" class="glyphicon glyphicon-heart-empty like-btn">
+<% end %>

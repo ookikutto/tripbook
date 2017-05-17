@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516104934) do
-
+ActiveRecord::Schema.define(version: 20170517072723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +106,26 @@ ActiveRecord::Schema.define(version: 20170516104934) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "story_likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_story_likes_on_story_id", using: :btree
+    t.index ["user_id", "story_id"], name: "index_story_likes_on_user_id_and_story_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_story_likes_on_user_id", using: :btree
+  end
+
+  create_table "story_loves", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_story_loves_on_story_id", using: :btree
+    t.index ["user_id", "story_id"], name: "index_story_loves_on_user_id_and_story_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_story_loves_on_user_id", using: :btree
+  end
+
   create_table "trending_places", force: :cascade do |t|
     t.integer  "place_id"
     t.integer  "batch"
@@ -144,4 +163,8 @@ ActiveRecord::Schema.define(version: 20170516104934) do
   add_foreign_key "cards", "stories"
   add_foreign_key "identities", "users"
   add_foreign_key "stories", "users"
+  add_foreign_key "story_likes", "stories"
+  add_foreign_key "story_likes", "users"
+  add_foreign_key "story_loves", "stories"
+  add_foreign_key "story_loves", "users"
 end

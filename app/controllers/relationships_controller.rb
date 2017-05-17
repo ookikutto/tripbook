@@ -3,6 +3,7 @@ class RelationshipsController < ApplicationController
     @target = relationship_params[:followable_type].constantize.
       find relationship_params[:followable_id]
     current_user.follow @target
+    current_user.like @target
     respond_to do |format|
       format.html { redirect_to @target }
       format.js
@@ -12,6 +13,7 @@ class RelationshipsController < ApplicationController
   def destroy
     @target = Relationship.find(params[:id]).followable
     current_user.unfollow @target
+    current_user.unlike @target
     respond_to do |format|
       format.html {redirect_to @target}
       format.js

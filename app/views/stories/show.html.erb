@@ -13,7 +13,26 @@
         <div class="headline-wrapper">
           <div class="large-headline"><%= @story.title %></div>
           <div class="small-headline"><%= @story.place.name %></div>
-        </div>
+          <div class="story-wrapper">
+            <div class="story-action">
+              <!-- <div class="like-count">
+                <span class="glyphicon glyphicon-heart-empty like-btn" aria-hidden="true"></span>
+                <span class="like-text"> <%= @story.liked_by_count %> <%# t('home.like') %></span>
+              </div> -->
+              <%= render "shared/loves/stats" %>
+              <% if @story.trending %>
+                  <div class="trending">
+                    <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                    <span class="trending-text"> <%= t('home.trending') %></span>
+                  </div>
+              <% end %>
+              <div class="comment-count">
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                <span class="comment-text"> <%= @story.story_comments.count %> <%# t('home.response') %></span>
+              </div>
+            </div>
+          </div>
+          </div>
       </div>
 
     </div>

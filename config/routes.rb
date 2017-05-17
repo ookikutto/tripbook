@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :cards
   end
   resources :relationships, only: [ :create, :destroy ]
+  resources :story_loves, only: [ :create, :destroy ]
 
   resources :signed_urls, only: :index # GET the key to send file to S3
   get 'home' => 'pages#home', as: 'home'

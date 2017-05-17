@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :stories
   has_many :places, through: :stories
 
+  has_many :story_loves, class_name: 'StoryLove'
+  has_many :loved_stories, through: :story_loves, source: :story
+
   # FOLLOW
   has_many :passive_relationships, class_name: 'Relationship',
     dependent: :destroy, as: :followable
@@ -38,12 +41,20 @@ class User < ApplicationRecord
     self.send("following_#{source_type something}s").include?(something)
   end
 
-  def like(something)
-    self.bookmark something
+  def love(story)
+    self.loved_stories << story
   end
 
-  def unlike(something)
-    self.unbookmark something
+  def love?(story)
+    self.loved_stories.include? story
+  end
+
+  def unlove(story)
+    self.loved_stories.delete(story)
+  end
+
+  def loves_count
+    self.loved_stories.count
   end
 
   def twitter

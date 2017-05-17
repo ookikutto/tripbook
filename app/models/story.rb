@@ -5,7 +5,14 @@ class Story < ApplicationRecord
   has_many :cards, dependent: :destroy
   has_many :story_comments, -> { order "created_at DESC"}
 
+  has_many :story_loves, class_name: 'StoryLove'
+  has_many :lovers, through: :story_loves, source: :user
+
   attr_accessor :trending, :most_recent
+
+  def lovers_count
+    self.lovers.count
+  end
 
   def timeline
     cards.order(created_at: :asc)
@@ -27,5 +34,9 @@ class Story < ApplicationRecord
     # impressions.group(:ip_address).size gives => {'127.0.0.1'=>9, '0.0.0.0'=>1}
     # so getting keys from the hash and calculating the number of keys
     impressions.group(:ip_address).size.keys.length
+  end
+
+  def likes_count
+
   end
 end

@@ -35,7 +35,7 @@
         </li>
         <% if current_user %>
             <li>
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= truncate current_user.email, length: 30 %>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= truncate current_user.name || current_user.email, length: 30 %>
                 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li>

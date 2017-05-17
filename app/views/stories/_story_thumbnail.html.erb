@@ -4,8 +4,8 @@
     <div class="uploader-area">
       <a href="#uploader-profile">
         <div class="uploader-wrapper">
-          <div class="profile-pic" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
-          <p class="name"><%= story.user.email %></p>
+          <div class="profile-pic" style="background-image: url(<%= story.user.avatar || "//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png" %>);"></div>
+          <p class="name"><%= story.user.name || story.user.email %></p>
         </div>
       </a>
     </div>

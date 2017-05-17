@@ -1,12 +1,12 @@
 <div class="story-wrapper">
   <div class="uploader-info">
     <%= link_to user_path(id: story.user_id), :class => "profile-pic" do %>
-        <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+        <div class="profile-pic-img" style="background-image: url(<%= story.user.avatar || "//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png" %>);"></div>
     <% end %>
     </a>
     <div class="left">
       <%= link_to user_path(id: story.user_id), :class => "name" do %>
-        <%= truncate(story.user.email, length: 30) %>
+        <%= truncate(story.user.name || story.user.email, length: 30) %>
       <% end %>
     </div>
     <div class="right" id="parent">

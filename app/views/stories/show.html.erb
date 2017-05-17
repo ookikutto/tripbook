@@ -19,6 +19,7 @@
                 <span class="glyphicon glyphicon-heart-empty like-btn" aria-hidden="true"></span>
                 <span class="like-text"> <%= @story.liked_by_count %> <%# t('home.like') %></span>
               </div> -->
+              <a href="javascript:history.back()">Back</a>
               <%= render "shared/loves/stats" %>
               <% if @story.trending %>
                   <div class="trending">
@@ -33,7 +34,7 @@
               <%= render partial: "shared/views/views_count", locals: {story: @story} %>
             </div>
           </div>
-          </div>
+        </div>
       </div>
 
     </div>
@@ -63,13 +64,16 @@
             style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
                 width:100%">
          <div class="headline-wrapper">
-           <div class="large-headline"><%= @story.title %></div>
-           <div class="small-headline"><%= @story.place.name %></div>
-           <div class="row">
-             <% current_user.recommended_stories(3).each do |story| %>
-               <%= render partial: "stories/story_square", locals: {story: story} %>
-             <% end %>
+           <div class="large-headline">
+             以上です
            </div>
+           <% if user_signed_in? %>
+             <div class="row">
+               <% current_user.recommended_stories(3).each do |story| %>
+                 <%= render partial: "stories/story_square", locals: {story: story} %>
+               <% end %>
+             </div>
+           <% end %>
          </div>
        </div>
     </div>
@@ -96,12 +100,12 @@
     <!-- start uploader info -->
     <div class="uploader-info">
       <%= link_to user_path(id: @story.user_id), :class => "profile-pic" do %>
-          <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+          <div class="profile-pic-img" style="background-image: url(<%= @story.user.avatar || "//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png" %>);"></div>
       <% end %>
       </a>
       <div class="left">
         <%= link_to user_path(id: @story.user_id), :class => "name" do %>
-            <%= truncate(@story.user.email, length: 30) %>
+            <%= truncate(@story.user.name || @story.user.email, length: 30) %>
         <% end %>
 
         <p class="date-upload" id="hover-content"><%= distance_of_time_in_words_to_now(@story.created_at) %></p>
@@ -129,9 +133,9 @@
     <div class="comment-wrapper fade-animation fade-out-animation">
       <!-- start comment form -->
       <div class="comment-form">
-        <!--<div class="avatar">-->
+        <!-- <div class="avatar">-->
         <!--<div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>-->
-        <!--</div>-->
+        <!--</div> -->
         <% if current_user %>
             <div class="comment-input">
               <%= form_for(@story_comment) do |f| %>
@@ -161,7 +165,7 @@
         <div>
           <% @story.story_comments.each do |story_comment| %>
               <div class="comment-item">
-                <p class="username-comment"><%= story_comment.user.email %>
+                <p class="username-comment"><%= story_comment.user.name || story_comment.user.email %>
                   <span class="comment-content"><%= story_comment.comment %></span>
                 </p>
               </div>

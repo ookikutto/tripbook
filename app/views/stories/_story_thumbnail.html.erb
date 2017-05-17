@@ -1,0 +1,24 @@
+<div class="col-sm-6 story-item">
+  <div class="story-wrapper" style="background-image: url(<%= story.featured %>);">
+    <%= link_to "", story_path(story), class: 'story-detail-link' %>
+    <div class="uploader-area">
+      <a href="#uploader-profile">
+        <div class="uploader-wrapper">
+          <div class="profile-pic" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+          <p class="name"><%= story.user.email %></p>
+        </div>
+      </a>
+    </div>
+    <p class="story-title"><%= truncate story.title, length: 30 %></p>
+    <div class="story-stat">
+      <div class="like-count">
+        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+        <%= story.lovers_count %>
+      </div>
+      <div class="views-count">
+        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+        <%= story.unique_impression_count %>
+      </div>
+    </div>
+  </div>
+</div>

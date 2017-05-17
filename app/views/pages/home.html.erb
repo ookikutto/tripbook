@@ -1,5 +1,5 @@
 <div class="container home-page">
-  <div class="row ">
+  <div class="row">
     <div class="col-md-8 col-sm-12 ">
       <% @feeds.each do |story| %>
           <%= render partial: 'stories/story', locals: {story: story} %>
@@ -7,14 +7,34 @@
     </div>
 
     <div class="col-md-4 right-area">
+      <h2 class="text-center">推奨ストーリー</h2>
+      <div class="row">
+        <% current_user.recommended_stories.each do |story| %>
+        <%# Story.limit(3).each do |story| %>
+          <%= render partial: "stories/story_thumbnail", locals: {story: story} %>
+        <% end %>
+      </div>
+
+      <hr>
+
       <h2 class="text-center">トップ場所</h2>
       <div class="row">
-        <% Place.top(6).each do |place| %>
+        <% Place.top(4).each do |place| %>
           <% if place.present? && place.valid? %>
             <%= render partial: "places/place_thumbnail", locals: {place: place} %>
           <% end %>
         <% end %>
       </div>
+
+      <hr>
+
+      <h2 class="text-center">トップウーザー</h2>
+      <div class="row">
+        <% User.top(4).each do |user| %>
+          <%= render partial: "users/user_thumbnail", locals: {user: user} %>
+        <% end %>
+      </div>
+
     </div>
   </div>
 </div>

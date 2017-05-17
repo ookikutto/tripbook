@@ -42,4 +42,13 @@
         <%= render partial: "places/place_thumbnail", locals: {place: place} %>
     <% end %>
   </div>
+  <br>
+  <hr>
+  <h4 class="text-center" style="color: #666">推奨ウーザー</h4>
+  <br>
+  <% current_user.recommended_users(4).each do |user| %>
+  <%# User.limit(4).each do |user| %>
+    <%= render partial: "users/user_thumbnail", locals: {user: user} %>
+  <% end %>
+
 </div>

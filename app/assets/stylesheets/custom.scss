@@ -21,6 +21,17 @@ body {
   color: black;
 }
 
+.small-headline {
+  font-family: Gill Sans, Verdana;
+  font-size: 11px;
+  line-height: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 4px black;
+}
+
 .content {
   min-height: 100%;
 }

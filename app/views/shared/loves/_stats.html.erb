@@ -1,2 +1,6 @@
-<%= render "shared/loves/love_form" %>
+<% if user_signed_in? %>
+  <%= render "shared/loves/love_form" %>
+<% else %>
+  <a class="glyphicon glyphicon-heart-empty like-btn" href="<%= new_user_session_path %>"></a>
+<% end %>
 <span class="like-text loves-count"> <%= @story.lovers_count %></span>

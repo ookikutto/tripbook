@@ -1,4 +1,4 @@
 <% current_story_love = StoryLove.find_by user: current_user, story: @story %>
 <%= form_for current_story_love, html: {method: :delete}, remote: true, class: 'likes-form' do |f| %>
-  <button type="submit" class="glyphicon glyphicon-heart like-btn">
+  <button type="submit" class="glyphicon glyphicon-heart like-btn"></button>
 <% end %>

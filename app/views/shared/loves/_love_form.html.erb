@@ -1,5 +1,5 @@
 <div class="love-form">
-  <% if current_user.love? @story %>
+  <% if current_user.love?(@story) %>
     <%= render 'shared/loves/unlove' %>
   <% else %>
     <%= render 'shared/loves/love' %>

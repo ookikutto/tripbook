@@ -106,8 +106,8 @@ class User < ApplicationRecord
     @feed_stories.concat trending_story_ids
 
     # MOST RECENT
-    most_recent_story_ids = Story.order(created_at: :desc).limit(10).map(&:id)
-    @feed_stories.concat most_recent_story_ids
+    # most_recent_story_ids = Story.order(created_at: :desc).limit(10).map(&:id)
+    # @feed_stories.concat most_recent_story_ids
 
     # FROM FOLLOW
     @feed_stories.concat from_following_story_ids

@@ -169,7 +169,7 @@
             <div class="comment-input">
               <%= form_for(@story_comment) do |f| %>
                   <div>
-                    <%= f.text_field :comment, :class => "form-control", :placeholder => "Write a comment" %>
+                    <%= f.text_field :comment, :class => "form-control", :placeholder => "コメントを書く" %>
                     <%= f.hidden_field :story_id, :value => @story.id %>
                     <!--<div class="input-group-btn">-->
                     <%# f.submit "Send comment", :class => "btn btn-default" do %>

@@ -32,7 +32,7 @@
     <br>
     <h4 class="text-center" style="color: #666">推奨場所</h4>
     <% current_user.recommended_places(4).each do |place| %>
-      <%= render partial: "places/place_thumbnail", locals: {place: place} %>
+      <%= render partial: "places/place_thumbnail", locals: {place: place, col_width: 6} %>
     <% end %>
   </div>
 </div>

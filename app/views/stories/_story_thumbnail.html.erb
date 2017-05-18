@@ -1,4 +1,4 @@
-<div class="col-sm-6 story-item">
+<div class="col-sm-<%= col_width || 6 %> story-item story-thumbnail">
   <div class="story-wrapper" style="background-image: url(<%= story.featured %>);">
     <%= link_to "", story_path(story), class: 'story-detail-link' %>
     <div class="uploader-area">

@@ -5,7 +5,7 @@ class Story < ApplicationRecord
   has_many :cards, dependent: :destroy
   has_many :story_comments, -> { order "created_at DESC"}
 
-  has_many :story_loves, class_name: 'StoryLove'
+  has_many :story_loves, class_name: 'StoryLove', dependent: :destroy
   has_many :lovers, through: :story_loves, source: :user
 
   attr_accessor :trending, :most_recent

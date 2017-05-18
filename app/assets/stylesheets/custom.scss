@@ -1157,6 +1157,9 @@ a.button {
 
 .story-item.story-thumbnail {
   margin-bottom: 30px;
+  .story-wrapper:hover {
+    box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+  }
   .story-wrapper {
     height: 100px;
     background-position: center;
@@ -1251,10 +1254,6 @@ a.button {
 }
 
 
-
-.story-wrapper:hover {
-  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
-}
 
 .title {
   font-size: 24px;

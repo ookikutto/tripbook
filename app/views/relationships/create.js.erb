@@ -1,2 +1,2 @@
-$(".follow-form").html("<%= j render("shared/followables/unfollow") %>");
+$("<%= "#following-target-#{@target.class_name}-#{@target.id}" %>").html("<%= j render("shared/followables/unfollow") %>");
 $(".followers-count strong").html("<%= @target.followers.count %>");

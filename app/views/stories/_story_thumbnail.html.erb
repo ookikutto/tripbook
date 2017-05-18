@@ -9,7 +9,9 @@
         </div>
       </a>
     </div>
-    <p class="story-title"><%= truncate story.title, length: 30 %></p>
+    <a href="<%= story_path(story) %>">
+      <p class="story-title"><%= truncate story.title, length: 30 %></p>
+    </a>
     <div class="story-stat">
       <div class="like-count">
         <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>

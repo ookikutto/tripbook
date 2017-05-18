@@ -4,7 +4,7 @@
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="pill" href="#lastest">Lastest</a></li>
     <li><a data-toggle="pill" href="#hotest">Hotest</a></li>
-    <li><a data-toggle="pill" href="#likes">Likes</a></li>
+    <li><a data-toggle="pill" href="#likes">Favorite</a></li>
   </ul>
 
   <div class="tab-content">
@@ -19,9 +19,9 @@
       <% end %>
     </div>
     <div id="likes" class="tab-pane fade">
-      <%# @likes.each do |story| %>
-      <%# render "stories/story", locals: {story: story} %>
-      <%# end %>
+      <% @favorites.each do |story| %>
+        <%= render partial: "stories/story", locals: {story: story} %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -38,17 +38,20 @@
   <h4 class="text-center"><%= @user.name || @user.email%>が来たの場所</h4>
   <br>
   <div class="user-places-wrapper">
-    <% @user.places.each do |place| %>
-        <%= render partial: "places/place_thumbnail", locals: {place: place} %>
-    <% end %>
+    <div class="row">
+      <% @user.places.limit(4).each do |place| %>
+          <%= render partial: "places/place_thumbnail", locals: {place: place, col_width: 6} %>
+      <% end %>
+    </div>
   </div>
   <br>
   <hr>
   <h4 class="text-center" style="color: #666">推奨ウーザー</h4>
   <br>
-  <% current_user.recommended_users(4).each do |user| %>
-  <%# User.limit(4).each do |user| %>
-    <%= render partial: "users/user_thumbnail", locals: {user: user} %>
-  <% end %>
-
+  <div class="row">
+    <% current_user.recommended_users(4).each do |user| %>
+    <%# User.limit(4).each do |user| %>
+      <%= render partial: "users/user_thumbnail", locals: {user: user, col_width: 6} %>
+    <% end %>
+  </div>
 </div>

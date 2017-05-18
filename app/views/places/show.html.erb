@@ -31,8 +31,14 @@
     <hr>
     <br>
     <h4 class="text-center" style="color: #666">推奨場所</h4>
-    <% current_user.recommended_places(4).each do |place| %>
-      <%= render partial: "places/place_thumbnail", locals: {place: place, col_width: 6} %>
+    <% if user_signed_in? %>
+      <% current_user.recommended_places(4).each do |place| %>
+        <%= render partial: "places/place_thumbnail", locals: {place: place, col_width: 6} %>
+      <% end %>
+    <% else %>
+      <% Place.top(4).each do |place| %>
+        <%= render partial: "places/place_thumbnail", locals: {place: place, col_width: 6} %>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -19,13 +19,68 @@
       <strong><%= @target.stories.count %></strong>
     </td>
     <td class="followers-count">
-      <strong><%= @target.followers.count %></strong>
+      <strong style="cursor: pointer; color: #f50" data-toggle="modal" data-target="#followers-modal"><%= @target.followers.count %></strong>
     </td>
     <% if @target.is_user? %>
         <td class="following-count">
-          <strong><%= @target.following_count %></strong>
+          <strong style="cursor: pointer; color: #f50" data-toggle="modal" data-target="#following-modal"><%= @target.following_count %></strong>
         </td>
     <% end %>
   </tr>
 </table>
-<%= render "shared/followables/follow_form" %>
+<% if user_signed_in? %>
+  <%= render "shared/followables/follow_form" %>
+<% end %>
+
+<div class="modal fade" id="following-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">フォロワー</h4>
+      </div>
+      <div class="modal-body">
+        <ul style="text-align: left">
+          <% if @target.is_a? User %>
+            <% @target.following_users.each do |user| %>
+
+                <li><%= link_to user.name || user.email, user_path(user) %></li>
+
+            <% end %>
+
+            <% @target.following_places.each do |place| %>
+              <li><%= link_to place.name, place_path(place) %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <div class="modal-footer text-center">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="followers-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">フォロー中</h4>
+      </div>
+      <div class="modal-body">
+                <ul style="text-align: left">
+          <% @target.followers.each do |user| %>
+
+              <li><%= link_to user.name || user.email, user_path(user) %></li>
+
+          <% end %>
+        </ul>
+      </div>
+      <div class="modal-footer text-center">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

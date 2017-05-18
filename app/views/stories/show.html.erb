@@ -73,7 +73,7 @@
              <!-- start recommended_stories -->
              <div class="row">
                <div class="col-sm-3">
-                 <h4 class="small-headline">推薦されたストーリー</h4>
+                 <h4 class="small-headline">お勧めのストーリー</h4>
                </div>
                <% current_user.recommended_stories(3).each do |story| %>
                  <%= render partial: "stories/story_thumbnail", locals: {story: story, col_width: 3} %>
@@ -84,7 +84,7 @@
               <!-- recommended_places            -->
               <div class="row">
                 <div class="col-sm-3">
-                  <h4 class="small-headline">推薦された場所</h4>
+                  <h4 class="small-headline">お勧めの場所</h4>
                 </div>
                 <% current_user.recommended_places(3).each do |place| %>
                   <%= render partial: "places/place_thumbnail", locals: {place: place, col_width: 3} %>
@@ -95,7 +95,7 @@
               <!-- recommended_users            -->
               <div class="row">
                 <div class="col-sm-3">
-                  <h4 class="small-headline">推薦されたウーザー</h4>
+                  <h4 class="small-headline">お勧めのウーザー</h4>
                 </div>
                 <% current_user.recommended_users(3).each do |user| %>
                   <%= render partial: "users/user_thumbnail", locals: {user: user, col_width: 3} %>

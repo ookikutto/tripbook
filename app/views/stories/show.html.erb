@@ -1,6 +1,9 @@
 <div class="container image-show-page" style="padding: 0">
   <!-- start slideshow container -->
   <div class="col-md-12 slideshow-container">
+    <a href="javascript:history.back()" class="back-btn">
+      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+    </a>
     <!-- start featured -->
     <div class="mySlides fade-animation"
          style="position: absolute;
@@ -19,7 +22,6 @@
                 <span class="glyphicon glyphicon-heart-empty like-btn" aria-hidden="true"></span>
                 <span class="like-text"> <%= @story.liked_by_count %> <%# t('home.like') %></span>
               </div> -->
-              <a href="javascript:history.back()">Back</a>
               <%= render "shared/loves/stats" %>
               <% if @story.trending %>
                   <div class="trending">

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Story Comments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Story</th>
+      <th>Comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @story_comments.each do |story_comment| %>
+      <tr>
+        <td><%= story_comment.user_id %></td>
+        <td><%= story_comment.story_id %></td>
+        <td><%= story_comment.comment %></td>
+        <td><%= link_to 'Show', story_comment %></td>
+        <td><%= link_to 'Edit', edit_story_comment_path(story_comment) %></td>
+        <td><%= link_to 'Destroy', story_comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Story Comment', new_story_comment_path %>

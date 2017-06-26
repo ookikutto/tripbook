@@ -1,6 +1,9 @@
 <div class="container image-show-page" style="padding: 0">
   <!-- start slideshow container -->
   <div class="col-md-12 slideshow-container">
+    <a href="javascript:history.back()" class="back-btn">
+      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+    </a>
     <!-- start featured -->
     <div class="mySlides fade-animation"
          style="position: absolute;
@@ -13,6 +16,26 @@
         <div class="headline-wrapper">
           <div class="large-headline"><%= @story.title %></div>
           <div class="small-headline"><%= @story.place.name %></div>
+          <div class="story-wrapper">
+            <div class="story-action">
+              <!-- <div class="like-count">
+                <span class="glyphicon glyphicon-heart-empty like-btn" aria-hidden="true"></span>
+                <span class="like-text"> <%= @story.liked_by_count %> <%# t('home.like') %></span>
+              </div> -->
+              <%= render "shared/loves/stats" %>
+              <% if @story.trending %>
+                  <div class="trending">
+                    <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                    <span class="trending-text"> <%= t('home.trending') %></span>
+                  </div>
+              <% end %>
+              <div class="comment-count">
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                <span class="comment-text"> <%= @story.story_comments.count %> <%# t('home.response') %></span>
+              </div>
+              <%= render partial: "shared/views/views_count", locals: {story: @story} %>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -33,6 +56,60 @@
     <% end %>
     <!-- end cards -->
 
+    <!-- start recommendations -->
+    <div class="mySlides fade-animation"
+         style="position: absolute;
+             left: 0;
+             height: 100vh;
+             width: 100%;">
+       <div class="image-featured"
+            style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+                width:100%">
+         <div class="headline-wrapper recommendations-wrapper">
+           <div class="large-headline">
+             以上です
+           </div>
+           <% if user_signed_in? %>
+             <!-- start recommended_stories -->
+             <div class="row">
+               <div class="col-sm-3">
+                 <h4 class="small-headline">お勧めのストーリー</h4>
+               </div>
+               <% current_user.recommended_stories(3).each do |story| %>
+                 <%= render partial: "stories/story_thumbnail", locals: {story: story, col_width: 3} %>
+               <% end %>
+             </div>
+             <!-- end recommended_stories -->
+
+              <!-- recommended_places            -->
+              <div class="row">
+                <div class="col-sm-3">
+                  <h4 class="small-headline">お勧めの場所</h4>
+                </div>
+                <% current_user.recommended_places(3).each do |place| %>
+                  <%= render partial: "places/place_thumbnail", locals: {place: place, col_width: 3} %>
+                <% end %>
+              </div>
+              <!-- recommended_places -->
+
+              <!-- recommended_users            -->
+              <div class="row">
+                <div class="col-sm-3">
+                  <h4 class="small-headline">お勧めのウーザー</h4>
+                </div>
+                <% current_user.recommended_users(3).each do |user| %>
+                  <%= render partial: "users/user_thumbnail", locals: {user: user, col_width: 3} %>
+                <% end %>
+              </div>
+              <!-- recommended_users -->
+           <% end %>
+         </div>
+       </div>
+    </div>
+
+    <!-- end recommendations -->
+
+
     <a class="prev slideshow-prev">&#10094;</a>
     <a class="next slideshow-next">&#10095;</a>
     <a class="toggle-info">
@@ -48,15 +125,19 @@
   <!-- end slideshow container -->
 
   <!-- start comment container (right part) -->
-  <div class="hidden-md comment-container story-wrapper" style="display: none;">
+  <div class="hidden comment-container story-wrapper">
     <!-- start uploader info -->
     <div class="uploader-info">
-      <a href="#uploader-profile" class="profile-pic">
-        <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
+      <%= link_to user_path(id: @story.user_id), :class => "profile-pic" do %>
+          <div class="profile-pic-img" style="background-image: url(<%= @story.user.avatar || "//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png" %>);"></div>
+      <% end %>
       </a>
       <div class="left">
-        <a href="#uploader-profile" class="name"><%# truncate(current_user.email, length: 30) %></a>
-        <p class="date-upload" id="hover-content"> uploaded 7h ago</p>
+        <%= link_to user_path(id: @story.user_id), :class => "name" do %>
+            <%= truncate(@story.user.name || @story.user.email, length: 30) %>
+        <% end %>
+
+        <p class="date-upload" id="hover-content"><%= distance_of_time_in_words_to_now(@story.created_at) %></p>
       </div>
       <% if authorize_user?(@story, current_user) %>
           <div class="right">
@@ -65,31 +146,59 @@
                 <span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <li>
-                  <%= link_to 'Edit my post', edit_story_path(@story) %>
+                  <%= link_to t("stories.show.edit"), edit_story_path(@story) %>
                 </li>
-                <li><%= link_to 'Destroy', @story, method: :delete, data: {confirm: 'Are you sure?'} %></li>
+                <li><%= link_to t("stories.show.delete"), @story, method: :delete, data: {confirm: 'Are you sure?'} %></li>
               </ul>
             </div>
           </div>
       <% end %>
     </div>
+    <p class="large-headline"><%= @story.title %></p>
+
     <!-- end uploader info -->
 
     <!-- start comment wrapper -->
     <div class="comment-wrapper fade-animation fade-out-animation">
       <!-- start comment form -->
       <div class="comment-form">
-        <div class="avatar">
-          <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
-        </div>
-        <div class="comment-input">
-        </div>
+        <!-- <div class="avatar">-->
+        <!--<div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>-->
+        <!--</div> -->
+        <% if current_user %>
+            <div class="comment-input">
+              <%= form_for(@story_comment) do |f| %>
+                  <div>
+                    <%= f.text_field :comment, :class => "form-control", :placeholder => "コメントを書く" %>
+                    <%= f.hidden_field :story_id, :value => @story.id %>
+                    <!--<div class="input-group-btn">-->
+                    <%# f.submit "Send comment", :class => "btn btn-default" do %>
+                    <!--<i class="glyphicon glyphicon-search"></i>-->
+                    <%# end %>
+                    <!--</div>-->
+                  </div>
+              <% end %>
+            </div>
+        <% end %>
       </div>
       <!-- end comment form -->
 
       <!-- start comment show all -->
       <div class="comment-show-all">
+        <% if @story.story_comments.count>0 %>
+            <div class="comment-count">
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+              <%= @story.story_comments.count.to_s + " " + t("stories.show.comment") %>
+            </div>
+        <% end %>
         <div>
+          <% @story.story_comments.order(created_at: :desc).each do |story_comment| %>
+              <div class="comment-item">
+                <p class="username-comment"><%= story_comment.user.name || story_comment.user.email %>
+                  <span class="comment-content"><%= story_comment.comment %></span>
+                </p>
+              </div>
+          <% end %>
         </div>
       </div>
       <!-- end comment show all -->
@@ -98,76 +207,3 @@
   </div>
   <!-- end comment container (right part) -->
 </div>
-
-
-<script>
-    $(document).ready(function () {
-        var slideIndex = 1;
-        showSlides(slideIndex);
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            var slides = $(".mySlides");
-            var dots = $(".dot");
-
-            if (n > slides.length) {
-                slideIndex = 1
-            }
-            if (n < 1) {
-                slideIndex = slides.length
-            }
-            $.each(slides, function () {
-                $(this).hide();
-            });
-            $.each(dots, function () {
-                $(this).removeClass("active");
-            });
-            $(slides.get(slideIndex - 1)).show().fadeIn();
-            $(dots.get(slideIndex - 1)).addClass("active");
-        }
-
-        $(".slideshow-prev").click(function () {
-            plusSlides(-1);
-        });
-
-        $(".slideshow-next").click(function () {
-            plusSlides(1);
-        });
-
-        $(".slideshow-current").click(function () {
-            var navToSlide = $(this).data("index");
-            currentSlide(navToSlide);
-        });
-
-        $("#files").change(function () {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById("image").src = e.target.result;
-            };
-            reader.readAsDataURL(this.files[0]);
-            $(".no-image").hide();
-        })
-
-        $(".toggle-info").click(function () {
-            var commentContainer = $(".comment-container");
-            var slideshowContainer = $(".slideshow-container");
-
-            if (commentContainer.hasClass("col-md-4")) {
-                // hide comment, expand slideshow
-                commentContainer.removeClass("col-md-4").fadeOut().addClass("hidden-md");
-                slideshowContainer.removeClass("col-md-8").fadeIn().addClass("col-md-12");
-            } else if (commentContainer.hasClass("hidden-md")) {
-                commentContainer.removeClass("hidden-md").addClass("col-md-4").fadeIn();
-                slideshowContainer.removeClass("col-md-12").addClass("col-md-8");
-            }
-        });
-    });
-
-</script>

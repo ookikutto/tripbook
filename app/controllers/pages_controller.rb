@@ -9,7 +9,7 @@ class PagesController < ApplicationController
   end
 
   def home
-    @feeds = current_user.feed
+    @feeds = current_user.feeds
   end
 
   def about

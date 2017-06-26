@@ -48,28 +48,7 @@
 
         <!-- start story block -->
         <% @trendings.each do |story| %>
-          <div class="col-sm-4 story-item">
-            <div class="story-wrapper" style="background-image: url(<%= story.featured %>);">
-              <%= link_to "", story_path(story), class: 'story-detail-link' %>
-              <div class="uploader-area">
-                <a href="#uploader-profile">
-                  <div class="uploader-wrapper">
-                    <div class="profile-pic" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
-                    <p class="name"><%= story.user.email %></p>
-                  </div>
-                </a>
-              </div>
-              <p class="story-title"><%= truncate story.title, length: 30 %></p>
-              <div class="story-stat">
-                <div class="like-count">
-                  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 2037
-                </div>
-                <div class="comment-count">
-                  <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 31
-                </div>
-              </div>
-            </div>
-          </div>
+          <%= render partial: 'stories/story_square', locals: {story: story} %>
         <% end %>
         <!-- end story block -->
 
@@ -83,48 +62,39 @@
       <!-- end trending for guest -->
 
       <!-- start map -->
-      <section>
+      <!-- <section>
         <div class="map-wrapper" style="height: 360px; border: 1px solid #000 ">
           <div class="map">
             <h1 class="text-center"><%= t 'landing.map' %></h1>
           </div>
         </div>
-      </section>
+      </section> -->
       <!-- end map -->
 
       <section class="place">
         <div class="row">
-          <h2 class="text-center">場所</h2>
+          <h2 class="text-center">トップ場所</h2>
         </div>
         <br>
         <div class="row trending-for-guest">
-          <div class="col-sm-6 story-item">
-            <div class="story-wrapper place-wrapper" style="background-image: url(http://lorempixel.com/640/480/city);">
-              <p class="story-title">New York</p>
+          <% Place.top(2).each do |place| %>
+            <div class="col-sm-6 place-item">
+              <div class="make-color-wrapper place-img" style="background-image: url(<%= place.thumbnail %>); height: 320px;">
+                <a class="place-name small-headline" style="color: #fff; font-size: 20px; text-shadow: 1px 1px 4px black;" href="<%= place_path(place) %>"><%= place.name %></a>
+              </div>
             </div>
-          </div>
-          <div class="col-sm-6 story-item">
-            <div class="story-wrapper place-wrapper" style="background-image: url(http://lorempixel.com/640/480/city);">
-              <p class="story-title">京都</p>
-            </div>
-          </div>
+          <% end %>
         </div>
         <div class="row trending-for-guest">
-          <div class="col-sm-4 story-item">
-            <div class="story-wrapper place-wrapper" style="background-image: url(http://lorempixel.com/640/480/city);">
-              <p class="story-title">東京</p>
-            </div>
-          </div>
-          <div class="col-sm-4 story-item">
-            <div class="story-wrapper place-wrapper" style="background-image: url(http://lorempixel.com/640/480/city);">
-              <p class="story-title">広島</p>
-            </div>
-          </div>
-          <div class="col-sm-4 story-item">
-            <div class="story-wrapper place-wrapper" style="background-image: url(http://lorempixel.com/640/480/city);">
-              <p class="story-title">北海道</p>
-            </div>
-          </div>
+          <% if Place.top(5).count >= 5 %>
+            <% Place.top(5)[2..4].each do |place| %>
+              <div class="col-sm-4 place-item">
+                <div class="make-color-wrapper place-img" style="background-image: url(<%= place.thumbnail %>); height: 320px;">
+                  <a class="place-name" style="color: #fff; font-size: 20px; text-shadow: 1px 1px 4px black;" href="<%= place_path(place) %>"><%= place.name %></a>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
         </div>
       </section>
 

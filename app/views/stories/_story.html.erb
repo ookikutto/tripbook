@@ -1,0 +1,42 @@
+<div class="story-wrapper">
+  <div class="uploader-info">
+    <%= link_to user_path(id: story.user_id), :class => "profile-pic" do %>
+        <div class="profile-pic-img" style="background-image: url(<%= story.user.avatar || "//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png" %>);"></div>
+    <% end %>
+    </a>
+    <div class="left">
+      <%= link_to user_path(id: story.user_id), :class => "name" do %>
+        <%= truncate(story.user.name || story.user.email, length: 30) %>
+      <% end %>
+    </div>
+    <div class="right" id="parent">
+      <span class="date-upload" id="hover-content"><%= story.created_at %></span>
+      <%= distance_of_time_in_words_to_now(story.created_at) %>
+    </div>
+  </div>
+  <div class="large-headline">
+    <%= truncate story.title, length: 50 %>
+  </div>
+  <%= link_to story_path(story) do %>
+      <div class="story-cover" style="background-image: url(<%= story.featured %>);">
+      </div>
+  <% end %>
+
+  <%= link_to story_path(story) do %>
+      <p class="read-more caption">
+        <%= story.oldest_card.caption if story.oldest_card.present? &&
+            story.oldest_card.caption.present? %>...
+      </p>
+  <% end %>
+
+  <div class="story-action">
+    <%= render partial: "shared/loves/loves_count", locals: {story: story} %>
+    <% if story.trending %>
+        <div class="trending">
+          <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+          <span class="trending-text"> <%= t('home.trending') %></span>
+        </div>
+    <% end %>
+    <%= render partial: "shared/views/views_count", locals: {story: story} %>
+  </div>
+</div>

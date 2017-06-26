@@ -1,0 +1,11 @@
+<!-- @user: in user's view  -->
+<!-- @target: the user or place that will be followed -->
+<% unless current_user.id == @target.id %>
+  <div class="follow-form" id="<%= "following-target-#{@target.class_name}-#{@target.id}" %>">
+    <% if current_user.follow? @target %>
+      <%= render 'shared/followables/unfollow' %>
+    <% else %>
+      <%= render 'shared/followables/follow' %>
+    <% end %>
+  </div>
+<% end %>

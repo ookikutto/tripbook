@@ -1,101 +1,40 @@
-<style>
-  #hover-content {
-    display: none;
-  }
-
-  #parent:hover #hover-content {
-    display: inline;
-  }
-
-</style>
-
-
-<div class="container home-page">
-  <div class="row ">
+<div class="home-page">
+  <div class="row">
     <div class="col-md-8 col-sm-12 ">
       <% @feeds.each do |story| %>
-          <div class="story-wrapper">
-            <div class="uploader-info">
-              <a href="#uploader-profile" class="profile-pic">
-                <div class="profile-pic-img" style="background-image: url(//imghtlak.mmtcdn.com/blog/sites/default/files/styles/47x47/public/pictures/picture-155481-1480931403.png);"></div>
-              </a>
-              <div class="left">
-                <a href="#uploader-profile" class="name"><%= truncate(story.user.email, length: 30) %></a>
-              </div>
-              <div class="right" id="parent">
-                <span class="date-upload" id="hover-content"><%= story.created_at %></span>
-                <%= distance_of_time_in_words_to_now(story.created_at) %>
-              </div>
-            </div>
-            <div class="large-headline">
-              <%= truncate story.title, length: 50 %>
-            </div>
-            <%= link_to story_path(story) do %>
-                <div class="story-cover" style="background-image: url(<%= story.featured %>);">
-                </div>
-            <% end %>
-
-            <%= link_to story_path(story) do %>
-                <p class="read-more caption">
-                  <%= story.oldest_card.caption if story.oldest_card.present? &&
-                  story.oldest_card.caption.present? %>...
-                </p>
-            <% end %>
-
-            <div class="story-action">
-              <div class="like-count">
-                <span class="glyphicon glyphicon-heart-empty like-btn" aria-hidden="true"></span>
-                <span class="like-text"> 2037 <%# t('home.like') %></span>
-              </div>
-              <% if story.trending %>
-                  <div class="trending">
-                    <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-                    <span class="trending-text"> <%= t('home.trending') %></span>
-                  </div>
-              <% end %>
-              <div class="comment-count">
-                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                <span class="comment-text"> 31 <%# t('home.response') %></span>
-              </div>
-            </div>
-          </div>
+          <%= render partial: 'stories/story', locals: {story: story} %>
       <% end %>
     </div>
 
     <div class="col-md-4 right-area">
-      <h2 class="text-center">場所</h2>
+      <h2 class="text-center">お勧めのストーリー</h2>
       <div class="row">
-        <div class="col-sm-4 place-item">
-          <div class="make-color-wrapper place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
-            <p class="place-name">New York</p>
-          </div>
-        </div>
-        <div class="col-sm-4 place-item">
-          <div class="make-color-wrapper place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
-            <p class="place-name">京都</p>
-          </div>
-        </div>
-        <div class="col-sm-4 place-item">
-          <div class="make-color-wrapper place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
-            <p class="place-name">京都</p>
-          </div>
-        </div>
-        <div class="col-sm-4 place-item">
-          <div class="make-color-wrapper  place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
-            <p class="place-name">京都</p>
-          </div>
-        </div>
-        <div class="col-sm-4 place-item">
-          <div class="make-color-wrapper  place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
-            <p class="place-name">京都</p>
-          </div>
-        </div>
-        <div class="col-sm-4 place-item">
-          <div class="make-color-wrapper  place-img" style="background-image: url(http://lorempixel.com/640/480/city);">
-            <p class="place-name">京都</p>
-          </div>
-        </div>
+        <% current_user.recommended_stories(4).each do |story| %>
+        <%# Story.limit(3).each do |story| %>
+          <%= render partial: "stories/story_thumbnail", locals: {story: story, col_width: 6} %>
+        <% end %>
       </div>
+
+      <hr>
+
+      <h2 class="text-center">トップ場所</h2>
+      <div class="row">
+        <% Place.top(4).each do |place| %>
+          <% if place.present? && place.valid? %>
+            <%= render partial: "places/place_thumbnail", locals: {place: place, col_width: 6} %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <hr>
+
+      <h2 class="text-center">トップウーザー</h2>
+      <div class="row">
+        <% User.top(4).each do |user| %>
+          <%= render partial: "users/user_thumbnail", locals: {user: user, col_width: 6} %>
+        <% end %>
+      </div>
+
     </div>
   </div>
 </div>

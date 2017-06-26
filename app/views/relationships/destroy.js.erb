@@ -1,0 +1,2 @@
+$("<%= "#following-target-#{@target.class_name}-#{@target.id}" %>").html("<%= j render("shared/followables/follow") %>");
+$(".followers-count strong").html("<%= @target.followers.count %>");

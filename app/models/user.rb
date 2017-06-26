@@ -1,9 +1,61 @@
 class User < ApplicationRecord
+
+  recommends :stories, :places, :users
   # Remove the default :validatable and add :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :omniauthable
 
   has_many :identities
+
+  has_many :stories
+  has_many :places, through: :stories
+
+  has_many :story_loves, class_name: 'StoryLove'
+  has_many :loved_stories, through: :story_loves, source: :story
+
+  # FOLLOW
+  has_many :passive_relationships, class_name: 'Relationship',
+    dependent: :destroy, as: :followable
+  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :active_relationships, class_name: 'Relationship',
+    foreign_key: 'follower_id', dependent: :destroy
+  has_many :following_users, through: :active_relationships, source: :followable,
+    source_type: 'User'
+  has_many :following_places, through: :active_relationships, source: :followable,
+    source_type: 'Place'
+
+  def following_count
+    following = self.following_users.count
+    following += self.following_places.count
+  end
+
+  def follow(something)
+    self.send("following_#{source_type something}s") << something
+  end
+
+  def unfollow(something)
+    self.send("following_#{source_type something}s").delete(something)
+  end
+
+  def follow?(something)
+    self.send("following_#{source_type something}s").include?(something)
+  end
+
+  def love(story)
+    self.loved_stories << story
+  end
+
+  def love?(story)
+    self.loved_stories.include? story
+  end
+
+  def unlove(story)
+    self.loved_stories.delete(story)
+  end
+
+  def loves_count
+    self.loved_stories.count
+  end
 
   def twitter
     identities.where( :provider => "twitter" ).first
@@ -41,43 +93,69 @@ class User < ApplicationRecord
     @google_oauth2_client
   end
 
-  def feed
+  def feeds
     @feed_stories = []
 
     # TRENDING
-    trendings = TrendingStory.get.map do |story|
+    trending_story_ids = TrendingStory.get_ids.map do |id|
       result = {}
+      result[:id] = id
       result[:trending] = true
-      result[:id] = story.id
       result
     end
-    @feed_stories.concat trendings
+    @feed_stories.concat trending_story_ids
 
     # MOST RECENT
-    most_recents = Story.order(created_at: :desc).limit(10).map do |story|
-      result = {}
-      result[:most_recent] = true
-      result[:id] = story.id
-      result
-    end
-    # Choose distinct story from the ones that already in feed_stories
-    most_recents.select! do |story|
-      result = @feed_stories.detect { |fs| fs[:id] == story[:id] }
-      result.nil?
-    end
-    # Add to feed_stories
-    @feed_stories.concat most_recents
+    # most_recent_story_ids = Story.order(created_at: :desc).limit(10).map(&:id)
+    # @feed_stories.concat most_recent_story_ids
 
     # FROM FOLLOW
-    from_follows = []
-    @feed_stories.concat from_follows
+    @feed_stories.concat from_following_story_ids
 
-    # SHUFFLE THE RESULT
-    @feed_stories.shuffle.map do |st|
-      result = Story.find st[:id]
-      result.trending = st[:trending]
-      result.most_recent = st[:most_recent]
-      result
+    @feed_stories.uniq! do |s|
+      if s.is_a? Integer
+        s
+      else
+        s[:id]
+      end
     end
+
+    results = @feed_stories.map do |story_or_id|
+      if story_or_id.is_a? Integer
+        Story.find_by id: story_or_id
+      else
+        result = Story.find_by id: story_or_id[:id]
+        if result.nil?
+          nil
+        else
+          result.trending = story_or_id[:trending]
+          result
+        end
+      end
+    end
+    results.compact!
+
+    results = results.sort_by {|story| story.created_at}
+    results.reverse
+
+    # EAGER LOADING
+    # Story.where("id IN (?)", @feed_stories).order(created_at: :desc)
+  end
+
+  private
+
+  def from_following_story_ids
+    following_user_ids = "SELECT followable_id FROM relationships
+      WHERE follower_id = :user_id AND followable_type = :user_class_name"
+    following_place_ids = "SELECT followable_id FROM relationships
+      WHERE follower_id = :user_id AND followable_type = :place_class_name"
+    Story.where("(user_id IN (#{following_user_ids})) OR
+      (place_id IN (#{following_place_ids}))",
+      user_id: id, user_class_name: 'User', place_class_name: 'Place')
+      .map(&:id)
+  end
+
+  def source_type something
+    something.class.name.demodulize.downcase
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421083948) do
+ActiveRecord::Schema.define(version: 20170507034144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(version: 20170421083948) do
   end
 
   create_table "stories", force: :cascade do |t|
-    t.integer  "place_id"
     t.string   "title"
     t.integer  "user_id"
     t.datetime "created_at", null: false
@@ -124,6 +123,5 @@ ActiveRecord::Schema.define(version: 20170421083948) do
 
   add_foreign_key "cards", "stories"
   add_foreign_key "identities", "users"
-  add_foreign_key "stories", "places"
   add_foreign_key "stories", "users"
 end

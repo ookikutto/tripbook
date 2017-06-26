@@ -6,6 +6,7 @@ class StoriesController < ApplicationController
   before_action :log_impression, only: :show
 
   def show
+    @story_comment = StoryComment.new
   end
 
   def new
@@ -13,7 +14,10 @@ class StoriesController < ApplicationController
   end
 
   def create
-    @place = Place.find_or_create_by name: place_params[:name]
+    @place = Place.find_by name: place_params[:name], place_id: place_params[:place_id]
+    if @place.nil?
+      @place = Place.create place_params
+    end
     @story = Story.new story_params
     @story.place = @place
     @story.user = current_user
@@ -36,6 +40,7 @@ class StoriesController < ApplicationController
 
   def destroy
     @story.destroy
+    TrendingStory.fetch_to_db
     redirect_to home_path
   end
 
@@ -52,7 +57,7 @@ class StoriesController < ApplicationController
   end
 
   def place_params
-    params.require(:place).permit(:name)
+    params.require(:place).permit(:name, :place_id, :lat, :lng)
   end
 
   def find_story
@@ -66,6 +71,9 @@ class StoriesController < ApplicationController
     find_story
     if current_user
       @story.impressions.create(ip_address: request.remote_ip, user_id: current_user.id)
+      # User also like that story for the recommendation (based on what user's see)
+      current_user.like @story
+      current_user.like @story.place
     else
       @story.impressions.create(ip_address: request.remote_ip)
     end

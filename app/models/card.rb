@@ -1,5 +1,5 @@
 class Card < ApplicationRecord
-  belongs_to :story
+  belongs_to :story, dependent: :destroy
 
   # mount_uploader :photo, PhotoUploader
 

@@ -1,0 +1,44 @@
+<div class="containerx">
+  <div class="col-md-8 user-page-tabs">
+    <h3><%= link_to @place.name, place_path(@place) %></h3>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="pill" href="#lastest">Lastest</a></li>
+      <li><a data-toggle="pill" href="#hotest">Hotest</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="lastest" class="tab-pane fade in active">
+        <% @lastest.each do |story| %>
+          <%= render partial: "stories/story", locals: {story: story} %>
+        <% end %>
+      </div>
+      <div id="hotest" class="tab-pane fade">
+        <% @hostest.each do |story| %>
+          <%= render partial: "stories/story", locals: {story: story} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 user-page-stats">
+    <h3 class="text-center"><%= @place.name %></h3>
+    <p class="text-center" style="color: #666">場所</p>
+    <hr>
+    <div class="text-center">
+      <%= render "shared/followables/stats" %>
+    </div>
+
+    <hr>
+    <br>
+    <h4 class="text-center" style="color: #666">お勧めの場所</h4>
+    <% if user_signed_in? %>
+      <% current_user.recommended_places(4).each do |place| %>
+        <%= render partial: "places/place_thumbnail", locals: {place: place, col_width: 6} %>
+      <% end %>
+    <% else %>
+      <% Place.top(4).each do |place| %>
+        <%= render partial: "places/place_thumbnail", locals: {place: place, col_width: 6} %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

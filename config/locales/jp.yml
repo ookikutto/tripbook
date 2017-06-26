@@ -74,6 +74,10 @@ jp:
       place: 場所
       place_name: 場所（コンマで区切る）
       create: ストーリー書く
+    show:
+      comment: コメント
+      edit: ストーリー編集
+      delete: ストーリー削除
 
   # CARDS VIEW
   cards:

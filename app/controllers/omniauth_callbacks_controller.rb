@@ -28,6 +28,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user.update_attribute( :email, @identity.email)
     end
 
+    if @user.name.blank? && @identity.name
+      @user.update_attributes name: @identity.name
+    end
+
+    if @user.avatar.blank? && @identity.image
+      @user.update_attributes avatar: @identity.image
+    end
+
     if @user.persisted?
       @identity.update_attribute( :user_id, @user.id )
       # This is because we've created the user manually, and Device expects a

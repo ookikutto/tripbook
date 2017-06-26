@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170507034144) do
+=======
+ActiveRecord::Schema.define(version: 20170517193630) do
+>>>>>>> d4c54198d36fd4919a1a0757b91b962273d56ba4
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +79,17 @@ ActiveRecord::Schema.define(version: 20170507034144) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "lat"
+    t.string   "lng"
+    t.string   "place_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followable_id"
+    t.string   "followable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "stories", force: :cascade do |t|
@@ -85,6 +100,24 @@ ActiveRecord::Schema.define(version: 20170507034144) do
     t.string   "featured"
     t.integer  "place_id"
     t.index ["user_id"], name: "index_stories_on_user_id", using: :btree
+  end
+
+  create_table "story_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.string   "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "story_loves", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_story_loves_on_story_id", using: :btree
+    t.index ["user_id", "story_id"], name: "index_story_loves_on_user_id_and_story_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_story_loves_on_user_id", using: :btree
   end
 
   create_table "trending_places", force: :cascade do |t|
@@ -117,6 +150,7 @@ ActiveRecord::Schema.define(version: 20170507034144) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name"
+    t.string   "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -124,4 +158,6 @@ ActiveRecord::Schema.define(version: 20170507034144) do
   add_foreign_key "cards", "stories"
   add_foreign_key "identities", "users"
   add_foreign_key "stories", "users"
+  add_foreign_key "story_loves", "stories"
+  add_foreign_key "story_loves", "users"
 end

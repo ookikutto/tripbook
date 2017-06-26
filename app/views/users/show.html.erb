@@ -1,0 +1,57 @@
+
+<div class="col-md-8 user-page-tabs">
+  <h3><%= link_to @user.name || @user.email, user_path(@user) %></h3>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="pill" href="#lastest">Lastest</a></li>
+    <li><a data-toggle="pill" href="#hotest">Hotest</a></li>
+    <li><a data-toggle="pill" href="#likes">Favorite</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="lastest" class="tab-pane fade in active">
+      <% @lastest.each do |story| %>
+          <%= render partial: "stories/story", locals: {story: story} %>
+      <% end %>
+    </div>
+    <div id="hotest" class="tab-pane fade">
+      <% @hostest.each do |story| %>
+          <%= render partial: "stories/story", locals: {story: story} %>
+      <% end %>
+    </div>
+    <div id="likes" class="tab-pane fade">
+      <% @favorites.each do |story| %>
+        <%= render partial: "stories/story", locals: {story: story} %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4 user-page-stats">
+  <h2 class="text-center"><%= @user.name || @user.email %></h3>
+  <p class="text-center" style="color: #666">ウーザー</p>
+  <br>
+  <div class="text-center">
+    <%= render "shared/followables/stats" %>
+  </div>
+  <br>
+  <hr>
+  <h4 class="text-center"><%= @user.name || @user.email%>が来たの場所</h4>
+  <br>
+  <div class="user-places-wrapper">
+    <div class="row">
+      <% @user.places.limit(4).each do |place| %>
+          <%= render partial: "places/place_thumbnail", locals: {place: place, col_width: 6} %>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <h4 class="text-center" style="color: #666">お勧めのユーザー</h4>
+  <br>
+  <div class="row">
+    <% current_user.recommended_users(4).each do |user| %>
+    <%# User.limit(4).each do |user| %>
+      <%= render partial: "users/user_thumbnail", locals: {user: user, col_width: 6} %>
+    <% end %>
+  </div>
+</div>

@@ -35,10 +35,12 @@
         </li>
         <% if current_user %>
             <li>
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= truncate current_user.email, length: 30 %>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= truncate current_user.name || current_user.email, length: 30 %>
                 <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#"><%= t 'header.profile' %></a></li>
+                <li>
+                  <%= link_to t("header.profile"), user_path(id: current_user.id) %>
+                </li>
                 <li>
                   <%= link_to edit_user_registration_path do %>
                       <%= t 'header.edit-profile' %>

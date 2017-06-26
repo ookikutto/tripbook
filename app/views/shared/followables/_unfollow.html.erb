@@ -1,0 +1,4 @@
+<% current_relationship = Relationship.find_by follower: current_user, followable: @target %>
+<%= form_for current_relationship, html: {method: :delete}, remote: true do |f| %>
+    <%= f.submit "Unfollow", class: 'btn btn-unfollow' %>
+<% end %>

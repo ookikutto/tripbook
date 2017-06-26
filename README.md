@@ -1,4 +1,7 @@
 # TripBook
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fa6ed274757d43ada786a6d241a41fc7)](https://www.codacy.com/app/truongnmt/tripbook?utm_source=github.com&utm_medium=referral&utm_content=ookikutto/tripbook&utm_campaign=badger)
+
 ## Project of 大きいクット team
 
 ### How to install and set up the server
